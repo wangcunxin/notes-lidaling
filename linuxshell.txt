@@ -1,0 +1,24 @@
+-- cut
+
+	cat acinfo.csv | cut -d ',' -f 1|sort -u|wc -l
+
+
+-- sed
+
+	ref:http://coolshell.cn/articles/9104.html
+	sed -i 's/^/idfield,/' ulog_20150*.csv
+	sed -i 's/id'
+
+
+deb
+
+	uninstall open-jdk
+
+		sudo apt-get purge openjdk-\*
+
+	set defaut java
+
+		update-alternatives --install /usr/bin/java java  /usr/local/common/j2sdk1.4.2_18/bin/java 300
+		update-alternatives --install /usr/bin/javac javac /usr/local/common/j2sdk1.4.2_18/bin/javac 300
+		
+rpm

@@ -1,0 +1,29 @@
+######################£¨KAFKA->Flume->HDFS obd_gps£©#################
+consumer.sources.r7.interceptors = i9
+consumer.sources.r7.interceptors.i9.type = host
+consumer.sources.r7.interceptors.i9.useIP = false
+consumer.sources.r7.interceptors.i9.hostHeader = hostname
+consumer.sources.r7.type = org.apache.flume.plugins.KafkaSource
+consumer.sources.r7.zookeeper.connect=10.23.102.174:2181,10.23.102.175:2181,10.23.102.176:2181
+consumer.sources.r7.group.id=hadoop-flume1
+consumer.sources.r7.zookeeper.session.timeout.ms=400
+consumer.sources.r7.zookeeper.sync.time.ms=200
+consumer.sources.r7.auto.commit.interval.ms=1000
+consumer.sources.r7.custom.topic.name=obd_gps
+consumer.sources.r7.custom.thread.per.consumer=1
+consumer.sources.r7.channels = c7
+
+consumer.sinks.k7.type = hdfs
+consumer.sinks.k7.channel = c7
+consumer.sinks.k7.hdfs.path = /user/kettle/obdbi/original/obd_gps/stat_date=%Y%m%d
+consumer.sinks.k7.hdfs.inUsePrefix = .
+consumer.sinks.k7.hdfs.filePrefix = OBD-GPS.%{hostname}
+consumer.sinks.k7.hdfs.fileType = DataStream
+consumer.sinks.k7.hdfs.rollSize = 128000000
+consumer.sinks.k7.hdfs.rollInterval = 300
+consumer.sinks.k7.hdfs.writeFormat = Text
+consumer.sinks.k7.hdfs.rollCount = 0
+consumer.sinks.k7.hdfs.useLocalTimeStamp = true
+
+consumer.channels.c7.type = memory
+consumer.channels.c7.capacity = 20000000

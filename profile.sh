@@ -1,0 +1,8 @@
+JAVA_HOME=/opt/soft/jdk7
+HADOOP_HOME=/opt/cloud/hadoop
+SCALA_HOME=/opt/soft/scala
+SPARK_HOME=/opt/cloud/spark
+JRE_HOME=$JAVA_HOME/jre
+CLASSPATH=$JAVA_HOME/lib:$JRE_HOME/lib
+PATH=$JAVA_HOME/bin:$SCALA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
+export JAVA_HOME SPARK_HOME CLASSPATH PATH
