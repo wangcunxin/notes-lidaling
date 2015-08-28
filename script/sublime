@@ -1,0 +1,2 @@
+#!/bin/sh
+LD_PRELOAD=/home/lidl/soft/SublimeText2/libsublime-imfix.so /home/lidl/soft/SublimeText2/sublime_text > /dev/null 2>&1 &

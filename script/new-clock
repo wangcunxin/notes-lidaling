@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "env DISPLAY=:0 feh -F ~/tmp/tamato.png" |at now+25 minutes

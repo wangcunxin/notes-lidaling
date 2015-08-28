@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=SublimeText2
+Exec=sublime_text %U
+Comment=Text editor sublime text2
+Icon=/opt/SublimeText2/Icon/48x48/sublime_text.png
+Type=Application
+Terminal=false
+StartupNotify=true
+Encoding=UTF-8
+Categories=TextEditor;Development;GTK;GNOME;
