@@ -32,12 +32,16 @@ create database metastore DEFAULT CHARACTER SET utf8;
 create database sentry DEFAULT CHARACTER SET utf8;
 create database nav DEFAULT CHARACTER SET utf8;
 create database navms DEFAULT CHARACTER SET utf8;
+create database ooziedata DEFAULT CHARACTER SET utf8;
+create database monitordata DEFAULT CHARACTER SET utf8;
+
 grant all on amon.* TO 'root'@'master' IDENTIFIED BY 'root123';
 grant all on rman.* TO 'root'@'master' IDENTIFIED BY 'root123';
 grant all on metastore.* TO 'root'@'master' IDENTIFIED BY 'root123';
 grant all on sentry.* TO 'root'@'master' IDENTIFIED BY 'root123';
 grant all on nav.* TO 'root'@'master' IDENTIFIED BY 'root123';
 grant all on navms.* TO 'root'@'master' IDENTIFIED BY 'root123';
+grant all on ooziedata.* TO 'root'@'master' IDENTIFIED BY 'root123';
 
 
 grant all on amon.* TO 'root'@'cdh-master' IDENTIFIED BY 'root123';
@@ -46,7 +50,18 @@ grant all on metastore.* TO 'root'@'cdh-master' IDENTIFIED BY 'root123';
 grant all on sentry.* TO 'root'@'cdh-master' IDENTIFIED BY 'root123';
 grant all on nav.* TO 'root'@'cdh-master' IDENTIFIED BY 'root123';
 grant all on navms.* TO 'root'@'cdh-master' IDENTIFIED BY 'root123';
+grant all on ooziedata.* TO 'root'@'cdh-master' IDENTIFIED BY 'root123';
+grant all on monitordata.* TO 'root'@'cdh-master' IDENTIFIED BY 'root123';
 
+drop database amon;
+drop database rman;
+drop database metastore;
+drop database sentry;
+drop database nav;
+drop database navms;
+drop database ooziedata;
+drop database monitordata;
+drop database scm;
 
 [mysqld]
 default-storage-engine = innodb
@@ -124,7 +139,14 @@ server 3.asia.pool.ntp.org
 service ntpd start
 chkconfig ntpd on
 
-network set:
+
+
+
+repl 包放在  /opt/cloudera/parcel-repo 
+
+
+
+### network set:
 
 DEVICE=eth0
 HWADDR=08:00:27:22:FF:5C
@@ -147,9 +169,12 @@ sudo mv /usr/bin/host /usr/bin/host.bak
 由于DNS反向解析没有配置好，根据Cloudera Manager Server 的ip解析主机名却得到了localhost，造成之后的连接错误
 这里的解决方案是直接把/usr/bin/host删掉，这样Cloudera Manager就会直接使用 ip进行连接，就没有错了
 
-cdh monitor connect refuse
+###cdh monitor connect refuse
 
-cdh service config up java memory size
+	cdh service config up java memory size
 
+### hdfs nfsgate way start error
 
-repl 包放在  /opt/cloudera/parcel-repo 
+	check stderr log :
+		service rpcbind start
+		chkconfig rpcbind on

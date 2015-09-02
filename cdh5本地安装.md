@@ -43,10 +43,16 @@ http://www.cloudera.com/content/cloudera/en/developers/home/developer-admin-reso
 
 ref:
 
+## cdh安装
+
 	http://blog.csdn.net/hua840812/article/details/27704025
 	http://blog.csdn.net/kissmelove01/article/details/44680255
 	http://blog.csdn.net/hualiu163/article/details/46659375
 	http://blog.csdn.net/forest_boy/article/details/5636696
 	http://itindex.net/detail/51928-cloudera-manager-cdh5
+
+## spark hadoop 部分安装 
+
+	http://blog.javachen.com/2013/04/06/install-cloudera-cdh-by-yum
 
 uninstall cdh:http://www.cloudera.com/content/cloudera/en/documentation/cloudera-manager/v4-latest/Cloudera-Manager-Installation-Guide/cmig_uninstall_CM.html

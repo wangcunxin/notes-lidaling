@@ -72,6 +72,7 @@ db.updateUser("bblink", {
 	./mongoimport -h cluster1 --port 30000 -d bblinklogs -u bblink -p bblink -c userAuthorizedLog --file /opt/cback/userAuthorizedLog.json
 
 	/opt/mongodb/bin/mongoexport -h *.*.*.* --port 30000 -d bblinklogs -c userAuthorizedLog -u aaaaaalog -p aaaaa#2015$ --csv -q '{createTime:{$gte:new Date(1433836800000),$lt:new Date(1433923200000)}}' -f _id,className,userId,gwId,userType,userMac,authorizeTime,createTime -o ~/result.csv
+	/opt/mongodb/bin/mongoexport -h *.*.*.* --port 30000 -d bblinklogs -c userAuthorizedLog -u aaaaaalog -p aaaaa#2015$ --csv -q '{$and:[{createTime:{$gte:new Date(1440518400000),$lt:new Date(1440604800000)}},{gwId:{$eq:"61060300FF0CA36D"}}]}' -f _id,className,userId,gwId,userType,userMac,authorizeTime,createTime -o ~/20150827.csv
 
 对于mongoexport -q ，这个查询语句有时不能直接从mongoshell里直接拿来用.比如这里的date参数需要为javascript里的Date() [参考](http://stackoverflow.com/questions/14758605/mongoexport-using-gt-and-lt-constraints-on-a-date-range).
 

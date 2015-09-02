@@ -17,3 +17,8 @@ cdh5 uninstall
 	rm -rf /tmp/.scm_prepare_node.lock
 	rm -Rf /var/lib/flume-ng /var/lib/hadoop* /var/lib/hue /var/lib/navigator /var/lib/oozie /var/lib/solr /var/lib/sqoop* /var/lib/zookeeper
 	rm -Rf /dfs /mapred /yarn
+	rm -rf /etc/hadoop/ /etc/hive/ /etc/spark/ /etc/cloudera-scm-* /etc/impala/
+
+	
+
+
