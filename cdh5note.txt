@@ -178,3 +178,6 @@ sudo mv /usr/bin/host /usr/bin/host.bak
 	check stderr log :
 		service rpcbind start
 		chkconfig rpcbind on
+
+
+ssh-copy-id -i ~/.ssh/id_pub. root@slave03

@@ -108,6 +108,9 @@ db.updateUser("bblink", {
 
     
 ```
+## dump
+
+	/opt/mongodb/bin/mongodump -h 112.65.205.87 --port 30000 -d bblinklogs -c sitePVv3 -u bblink_logs -p **** -q '{createTime:{$lt:1439568000000}}'
 
 ## 索引
 
