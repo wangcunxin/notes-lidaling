@@ -12,6 +12,8 @@ rmp download page:
 http://archive-primary.cloudera.com/cm5/redhat/6/x86_64/cm/5/RPMS/x86_64/
 http://archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/noarch/
 http://archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/x86_64/
+parcel download page:
+http://archive.cloudera.com/cdh5/parcels/
 
 wget -r -np -nH http://archive-primary.cloudera.com/cm5/redhat/6/x86_64/cm/5/RPMS/x86_64/ && wget -r -np -nH http://archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/noarch && wget -r -np -nH http://archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/x86_64
 
@@ -42,6 +44,7 @@ grant all on sentry.* TO 'root'@'master' IDENTIFIED BY 'root123';
 grant all on nav.* TO 'root'@'master' IDENTIFIED BY 'root123';
 grant all on navms.* TO 'root'@'master' IDENTIFIED BY 'root123';
 grant all on ooziedata.* TO 'root'@'master' IDENTIFIED BY 'root123';
+grant all on monitordata.* TO 'root'@'master' IDENTIFIED BY 'root123';
 
 
 grant all on amon.* TO 'root'@'cdh-master' IDENTIFIED BY 'root123';
