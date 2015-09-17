@@ -31,3 +31,7 @@ docker run --help
 docker export <CONTAINER ID> > /home/export.tar
 导入Image镜像
 cat /home/export.tar | sudo docker import - mynewimage
+
+查看container详细ID
+
+	docker inspect -f '{{ .State.Pid }}' $CONTAINER_ID
