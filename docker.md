@@ -31,3 +31,26 @@ docker run --help
 docker export <CONTAINER ID> > /home/export.tar
 导入Image镜像
 cat /home/export.tar | sudo docker import - mynewimage
+
+---
+docker inspect <container_name>
+
+docker images --tree
+
+
+---
+删除容器
+
+	sudo docker rm $(sudo docker ps -a -q)
+
+删除没有tag的images
+
+	sudo docker rmi $(sudo docker images | grep '^<none>' | awk '{print $3}')
+
+运行container
+
+	sudo docker start $containerId
+
+重新连接到container
+
+	sudo docker attach $containerId
