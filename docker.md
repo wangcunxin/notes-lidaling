@@ -54,3 +54,6 @@ docker images --tree
 重新连接到container
 
 	sudo docker attach $containerId
+查看container详细ID
+
+	docker inspect -f '{{ .State.Pid }}' $CONTAINER_ID
