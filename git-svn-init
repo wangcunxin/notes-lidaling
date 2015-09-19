@@ -1,0 +1,14 @@
+git svn init  http://192.168.0.102:8090/svn/bblink/trunk/bblink_bi
+ git fetch
+ git svn fetch
+ git status
+ more /tmp/users.txt 
+ vim ~/Documents/tech/svn2git.md
+ ls
+ git remote add origin http://git.bblink.cn/lidaling/bblink_bi.git
+ git push -u origin master
+
+
+
+ http://192.168.0.102:8090/svn/bblink/branches/bblink_bi/
+ http://192.168.0.102:8090/svn/bblink/branches/bblink_portal4.1/
