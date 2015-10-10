@@ -8,6 +8,11 @@ http://itindex.net/detail/51928-cloudera-manager-cdh5
 
 安装 mysql后的配置 ，查看 /var/log/mysqld.log，看是否有相关错误
 
+``
+yum install mysql-server`
+
+```
+
 rmp download page:
 http://archive-primary.cloudera.com/cm5/redhat/6/x86_64/cm/5/RPMS/x86_64/
 http://archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/noarch/
@@ -102,12 +107,16 @@ innodb_log_file_size = 128M
 log-error=/var/log/mysqld.log
 pid-file=/var/run/mysqld/mysqld.pid
 
-scp /Users/lidl/tmp/cdh5/archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.3.2/RPMS/noarch/*.rpm root@cv1:/var/pub/
-scp /Users/lidl/tmp/cdh5/archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.3.2/RPMS/x86_64//*.rpm root@cv1:/var/pub/
-scp /Users/lidl/tmp/cdh5/archive-primary.cloudera.com/cm5/redhat/6/x86_64/cm/5.3.2/RPMS/x86_64/*.rpm root@cv1:/var/pub/
 
 
 nginx配置
+
+/etc/nginx/conf.d/defautl.conf
+
+```
+	root	/var/http/pub;
+	autoindex	on;
+```
 
 cdh5.repo配置
 
@@ -145,7 +154,7 @@ chkconfig ntpd on
 
 
 
-repl 包放在  /opt/cloudera/parcel-repo 
+repl 包放在  /opt/cloudera/parcel-repo
 
 
 
@@ -184,3 +193,5 @@ sudo mv /usr/bin/host /usr/bin/host.bak
 
 
 ssh-copy-id -i ~/.ssh/id_pub. root@slave03
+
+hadoop classpath  see hadoop_conf_dir LOCATION
