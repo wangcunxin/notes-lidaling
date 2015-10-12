@@ -8,3 +8,13 @@ kafka-console-consumer.sh --zookeeper cloud1:2181 --topic topicName
 kafka-console-producer.sh --broker-list cloud1:9092 --topic topicName
 ### create topic
 kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+
+### delete topic
+
+set topic property on brokers server.properties
+
+    delete.topic.enable=true
+
+then issue command :
+
+    kafka-topics.sh --delete --zookeeper localhost:2181 --topic test
