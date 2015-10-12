@@ -26,7 +26,7 @@ db.createUser(
   {
     user: "bblink",
     pwd: "bblink",
-    roles: [ 
+    roles: [
     	{ role: "userAdmin", db: "bblinklogs" },
     	{ role: "dbOwner", db: "bblinklogs" }
     ]
@@ -82,12 +82,12 @@ db.updateUser("bblink", {
 	>1433894400000
 
 验证：
-	
+
 	new Date(1433894400000)
 	>ISODate("2015-06-10T00:00:00Z")
- 
+
 注意　上边的月份index是从0开始的．另外，ISODate要落后8小时。
-    
+
 ## 查询
 
 ```shell
@@ -104,9 +104,9 @@ db.updateUser("bblink", {
 	db.userAuthorizedLog.find({$and:[{createTime:{$gte:ISODate("2015-07-02T17:00:00.00Z"),$lt:ISODate("2015-07-02T18:00:00.00Z")}},{gwId:{$eq:'001631f1b54c'}}]}).count()
 ---
 	db.getCollection('sitePVv3').find({createTime:{$gte:1441814400000,$lt:1441900800000}}).count()
-  
 
-    
+
+
 ```
 ## dump
 
@@ -129,36 +129,36 @@ db.updateUser("bblink", {
 嵌套字段索引：
 
 	db.things.ensureIndex({"address.city":1})
-    
+
 组合字段索引：
 
-	db.things.ensureIndex({j:1,name:-1}) 
-    
+	db.things.ensureIndex({j:1,name:-1})
+
 稀疏索引：
 
 	db.people.ensureIndex({title:1},{sparse:true})
-    #稀疏索引,未包含的字段的document 将不会被查询 
+    #稀疏索引,未包含的字段的document 将不会被查询
 
 删除索引：
-	
+
     db.people.dropIndex({title:1})
-    db.collection.dropIndexes();#删除所有索引 
+    db.collection.dropIndexes();#删除所有索引
 
 唯一索引：
 
-	db.things.ensureIndex({firstname:1,lastname:1},{unique:true}) 
-   
+	db.things.ensureIndex({firstname:1,lastname:1},{unique:true})
+
 重复键：
 
-	db.things.ensureIndex({firstname : 1}, {unique : true, dropDups : true}) 
-    #可自动删除 后边重复的 
-    
+	db.things.ensureIndex({firstname : 1}, {unique : true, dropDups : true})
+    #可自动删除 后边重复的
+
 重建索引：
 
-	db.myCollection.reIndex() 
-    // same as: 
-    db.runCommand( { reIndex : 'myCollection' } ) 
-    
+	db.myCollection.reIndex()
+    // same as:
+    db.runCommand( { reIndex : 'myCollection' } )
 
+sharding status check:
 
-
+  db.collection.getShardDistribution()
