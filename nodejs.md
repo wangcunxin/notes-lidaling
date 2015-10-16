@@ -12,8 +12,19 @@ node js install guide: https://github.com/nodejs/node-v0.x-archive/wiki/Installi
   npm install package -g
   npm install package --verbose
 
-### forever
+### syntax
 
+- about module export
+
+  module.exports = (function () {));
+  or
+  var logger = exports;
+  logger.a=function(){};
+
+  then
+  var moduleDefinedName= require('./module.js');
+
+### forever  
 - install
 
   npm install forever -g

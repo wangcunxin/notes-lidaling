@@ -13,3 +13,9 @@
 
 ### add datanode
 需要 将hadoop 目录 拷贝至目录主机，然后 把 dfs/name/current/VERSION 里的namespaceId行内容 拷贝至目录主机相同文件中
+
+### ref linux shell
+
+create user and groupname same as username ,and without home dir
+
+	useradd impala -M -s /bin/bash -p '*'

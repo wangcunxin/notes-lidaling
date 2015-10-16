@@ -1,4 +1,5 @@
-ref: http://kafka.apache.org/081/quickstart.html
+ref:
+http://kafka.apache.org/081/quickstart.html
 
 ### list all topic
 kafka-topics.sh --zookeeper cloud1:2181 --list
@@ -18,3 +19,14 @@ set topic property on brokers server.properties
 then issue command :
 
     kafka-topics.sh --delete --zookeeper localhost:2181 --topic test
+
+### zkCli.sh location in CDH
+
+    /opt/cloudera/parcels/CDH/lib/zookeeper/bin/zkCli.sh
+
+
+    kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 3 --partitions 3 --topic back-wechatNewFanDetails
+    kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 3 --partitions 3 --topic site-sitePVv3
+    kafka-topics.sh --zookeeper localhost:2181 --list
+    kafka-console-producer.sh --broker-list cdh-slave2:9092 --topic back-wechatNewFanDetails
+    kafka-console-consumer.sh --zookeeper cdh-slave1:2181 --topic back-wechatNewFanDetails

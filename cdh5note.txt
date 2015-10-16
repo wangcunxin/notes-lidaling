@@ -14,6 +14,9 @@ yum install mysql-server`
 ```
 
 rmp download page:
+
+	if the download speed is low ,try the domain:	http://archive.cloudera.com
+
 http://archive-primary.cloudera.com/cm5/redhat/6/x86_64/cm/5/RPMS/x86_64/
 http://archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/noarch/
 http://archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/x86_64/
@@ -195,3 +198,12 @@ sudo mv /usr/bin/host /usr/bin/host.bak
 ssh-copy-id -i ~/.ssh/id_pub. root@slave03
 
 hadoop classpath  see hadoop_conf_dir LOCATION
+
+### change hostname
+
+issue command:
+
+	hostname newhostname
+
+then type:
+	bash

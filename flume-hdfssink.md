@@ -1,8 +1,3 @@
-# flume config
-http://www.treselle.com/blog/flume-data-collection-framework/
-http://christophermeiklejohn.com/flume/hdfs/2013/06/18/flume-ng-configuration-with-an-hdfs-sink.html
-http://stackoverflow.com/questions/22474243/error-flume-sinkrunner-unable-to-deliver-event-exception-follows
-
 # portal-loginlog portal-authorizedlog portal-jstrackinglog
 1.agent的配置：agent和source、channel、sink的绑定
 #define agent_portal

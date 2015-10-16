@@ -99,7 +99,7 @@ db.updateUser("bblink", {
 	db.userAuthorizedLog.find({userType:{$exists: false}}).pretty()
 	db.userAuthorizedLog.find({gwId:{$eq: null}}).pretty()
 	db.userAuthorizedLog.find({createTime:{$gte:ISODate("2015-06-09T16:00:00.00Z"),$lt:ISODate("2015-06-10T16:00:00.00Z")}})
-  	db.userAuthorizedLog.find({$and:[{createTime:{$gte:ISODate("2015-07-01T16:00:00.00Z"),$lt:ISODate("2015-07-02T16:00:00.00Z")}},{gwId:{$eq:'001631f1b54c'}}]})
+  	db.userAuthorizedLog.find({$and:[{createTime:{$gte:ISODate("2015-07-01T16:00:00.00Z"),$lt:ISODate("2015-07-02T16:00:00.00Z")}},{userType:{$eq:'WECHAT'}}]})
   	db.userAuthorizedLog.find({createTime:{$gte:ISODate("2015-06-06T16:00:00.00Z"),$lt:ISODate("2015-06-07T16:00:00.00Z")}})
 	db.userAuthorizedLog.find({$and:[{createTime:{$gte:ISODate("2015-07-02T17:00:00.00Z"),$lt:ISODate("2015-07-02T18:00:00.00Z")}},{gwId:{$eq:'001631f1b54c'}}]}).count()
 ---
