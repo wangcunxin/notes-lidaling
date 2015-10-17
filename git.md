@@ -1,7 +1,7 @@
 # git commands
 
 ## config
-	
+
     git config --global core.editor "vim"
 
 ##common command
@@ -10,3 +10,7 @@
     git checkout '$branch name'
     git checkou -b '$branch name'
     git remote update
+
+- untrack files
+
+		git rm --cached .DS_Store
