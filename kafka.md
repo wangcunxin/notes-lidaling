@@ -25,8 +25,8 @@ then issue command :
     /opt/cloudera/parcels/CDH/lib/zookeeper/bin/zkCli.sh
 
 
-    kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 3 --partitions 3 --topic back-wechatNewFanDetails
-    kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 3 --partitions 3 --topic site-sitePVv3
+    kafka-topics.sh --create --zookeeper slave1:2181 --replication-factor 3 --partitions 3 --topic back-wechatNewFanDetails
+    kafka-topics.sh --create --zookeeper slave1:2181 --replication-factor 3 --partitions 3 --topic site-sitePVv3
     kafka-topics.sh --zookeeper localhost:2181 --list
     kafka-console-producer.sh --broker-list cdh-slave2:9092 --topic back-wechatNewFanDetails
     kafka-console-consumer.sh --zookeeper cdh-slave1:2181 --topic back-wechatNewFanDetails

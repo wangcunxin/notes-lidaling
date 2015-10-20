@@ -28,7 +28,7 @@ create table tab3(
 	month int,
 	day int
 )
-row format delimiterd fields terminated by ',';
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
 ```
 
 ## upload data to dest dir

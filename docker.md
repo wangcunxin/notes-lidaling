@@ -22,7 +22,7 @@ docker save mynewimage | bzip2 -9 -c> /home/save.tar.bz2
 加载 mynewimage 镜像
 bzip2 -d -c < /home/save.tar.bz2 | docker load  
 删除所有容器
-docker rm `docker ps -a -q` 
+docker rm `docker ps -a -q`
 删除镜像
 docker rmi [image-id]
 帮助
@@ -57,3 +57,12 @@ docker images --tree
 查看container详细ID
 
 	docker inspect -f '{{ .State.Pid }}' $CONTAINER_ID
+
+
+### fig -> compose
+
+	pip install docker-compose
+
+### network
+
+	Docker自身的网络功能比较简单，不能满足很多复杂的应用场景。因此，有很多开源项目用来改善Docker的网络功能，如pipework、weave、flannel等。这里，就先介绍一下pipework的使用和工作原理
