@@ -1,0 +1,1 @@
+mvn archetype:generate -DgroupId=cn.lidl -DartifactId=impalasink -DarchetypeArtifactId=maven-archetype-quickstart
