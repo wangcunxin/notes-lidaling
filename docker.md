@@ -73,3 +73,6 @@ docker images --tree
 	none模式，使用--net=none指定。
 	bridge模式，使用--net=bridge指定，默认设置
 ```
+	sudo docker run -d -p 80:80 steeef/graphite-centos
+
+	docker 80端口映射到本地 
