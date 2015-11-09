@@ -12,16 +12,16 @@ Database /path/to/csvfile/TableName.csv
 
 ## modify talbe field column comment
 
-	 ALTER TABLE `user` CHANGE `id` `id` INT( 11 ) COMMENT 'id of user' 
+	 ALTER TABLE `user` CHANGE `id` `id` INT( 11 ) COMMENT 'id of user'
 
 ## create database
 
 	CREATE DATABASE IF NOT EXISTS bblink_hos DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
-    
+
 ## create user
 
 	create user bblink_hos@'%' identified by 'bblink_hos';
-    
+
 ## grant privileges
 
 	grant all privileges on bblink_hos.* to bblink_hos;
@@ -34,19 +34,19 @@ Database /path/to/csvfile/TableName.csv
 
 	select column_name from information_schema.columns where table_name='bblink_wxcity_user_info';
 
-## create as 
+## create as
 
 	create table tmp_now_mobile as select mobile from bblink_user_net_info where mobile is not null  order by create_time desc limit 5095140;
 
 ## msyqlimport
 
-	mysqlimport  --ignore-lines=1 --fields-terminated-by=, --lines-terminated-by='\r\n' --columns='id,mobile' --local -u root -p bblink_hos /root/tmp_new_mobile.csv 
+	mysqlimport  --ignore-lines=1 --fields-terminated-by=, --lines-terminated-by='\r\n' --columns='id,mobile' --local -u root -p bblink_hos /root/tmp_new_mobile.csv
 
-## 查看 建表结构
+## 锟介看 锟斤拷锟斤拷锟结构
 
 	show create table bblink_user_net_info\G;
 
-## 复制表结构 
+## 锟斤拷锟狡憋拷锟结构
 
 	create table a select * from table b limit 0;
 
@@ -54,3 +54,8 @@ Database /path/to/csvfile/TableName.csv
 
 	show processlist
 	SELECT * FROM information_schema.processlist WHERE `INFO` LIKE 'SELECT %';
+
+## datetime
+
+	UNIX_TIMESTAMP('2015-01-15 12:00:00');
+	FROM_UNIXTIME(timestamp) 

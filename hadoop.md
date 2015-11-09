@@ -16,6 +16,15 @@
 
 ### ref linux shell
 
-create user and groupname same as username ,and without home dir
+create user with group:
+
+	sudo addgroup impala
+	sudo adduser -ingroup impala
+
+create user and groupname same as username ,and without home dir:
 
 	useradd impala -M -s /bin/bash -p '*'
+
+delete user:
+
+	sudo userdel -r impala

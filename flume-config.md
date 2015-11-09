@@ -56,3 +56,13 @@ agent_portal.channels.ch_portal-loginlog.dataDirs = /data/tmp/flume/data_portal-
 #define source and sink match channel
 agent_portal.sources.src_portal-loginlog.channels = ch_portal-loginlog
 agent_portal.sinks.sink_portal-loginlog.channel = ch_portal-loginlog
+
+
+
+
+
+
+
+bin/flume-ng agent -c conf -f conf/flume-conf-wifi.properties -name agent_wifi &
+bin/flume-ng agent -c conf -f conf/flume-conf-back.properties -name agent_back &
+bin/flume-ng agent -c conf -f conf/flume-conf-site.properties -name agent_site &

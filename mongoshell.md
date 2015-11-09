@@ -105,6 +105,25 @@ db.updateUser("bblink", {
 ---
 	db.getCollection('sitePVv3').find({createTime:{$gte:1441814400000,$lt:1441900800000}}).count()
 
+### aggregate
+
+```
+db.bblink_wifilog_userlogin_count.aggregate([  
+  { $match : { "day" : "2015-10-30"}},  
+  { $group : { _id : "$day", num_tutorial : {$sum : "$count"},count:{$sum : 1} }}  
+]);  
+
+db.runCommand({"group":{  
+    "ns":"bblink_wifilog_userlogin_count",  
+    "key":"day",  
+    "initial":{"total":0},  
+    "$reduce" : function(doc,prev){  
+        prev.total += doc.count;  
+    },  
+    "condition":{"day":"2015-10-30"}  
+}}); 
+```
+
 
 
 ```

@@ -16,7 +16,7 @@
 
 -- grep
 
-	tail -f file | grep --line-buffered my_pattern
+	tail -f file | grep --line-buffered -C 3 my_pattern
 	grep -B 3 partern file
 	grep -A 3 partern file
 	grep -C 3 partern file

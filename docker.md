@@ -66,3 +66,10 @@ docker images --tree
 ### network
 
 	Docker自身的网络功能比较简单，不能满足很多复杂的应用场景。因此，有很多开源项目用来改善Docker的网络功能，如pipework、weave、flannel等。这里，就先介绍一下pipework的使用和工作原理
+
+```
+	host模式，使用--net=host指定。
+	container模式，使用--net=container:NAME_or_ID指定。
+	none模式，使用--net=none指定。
+	bridge模式，使用--net=bridge指定，默认设置
+```

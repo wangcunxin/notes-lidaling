@@ -12,7 +12,7 @@ kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --par
 
 ### delete topic
 
-set topic property on brokers server.properties
+set topic property on brokers server-env.sh
 
     delete.topic.enable=true
 

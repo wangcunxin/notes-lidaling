@@ -97,6 +97,92 @@ ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
 LOCATION '/impala/tbs/site/site-sitePVv3';
 ```
 
+### adLoad
+
+drop table if EXISTS txtdb.site_adLoadv1;
+CREATE EXTERNAL TABLE txtdb.site_adLoadv1(
+    uid string,
+    adid string,
+    guuid string,
+    guuidCTime BIGINT,
+    url string,
+    referer string,
+    hosid string,
+    gwid string,
+    ua string,
+    ip string,
+    createTime BIGINT
+  )
+partitioned by (dat string)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+LOCATION '/impala/txt/site/site-adLoadv1';
+
+drop table if EXISTS parquetdb.site_adLoadv1;
+CREATE EXTERNAL TABLE parquetdb.site_adLoadv1(
+    uid string,
+    adid string,
+    guuid string,
+    guuidCTime BIGINT,
+    url string,
+    referer string,
+    hosid string,
+    gwid string,
+    ua string,
+    ip string,
+    createTime BIGINT
+  )
+partitioned by (dat string)
+stored as parquet
+LOCATION '/impala/parquet/site/site-adLoadv1';
+
+## adclick
+
+drop table if EXISTS txtdb.site_adClickv1;
+CREATE EXTERNAL TABLE txtdb.site_adClickv1(
+  uid string,
+  adid string,
+  guuid string,
+  createTime BIGINT
+  )
+partitioned by (dat string)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+LOCATION '/impala/txt/site/site-adClickv1';
+
+drop table if EXISTS parquetdb.site_adClickv1;
+CREATE EXTERNAL TABLE parquetdb.site_adClickv1(
+  uid string,
+  adid string,
+  guuid string,
+  createTime BIGINT
+  )
+partitioned by (dat string)
+stored as parquet
+LOCATION '/impala/parquet/site/site-adClickv1';
+
+## adplay
+
+drop table if EXISTS txtdb.site_adPlayv1;
+CREATE EXTERNAL TABLE txtdb.site_adPlayv1(
+  uid string,
+  adid string,
+  guuid string,
+  createTime BIGINT
+  )
+partitioned by (dat string)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+LOCATION '/impala/txt/site/site-adPlayv1site-adClickv1';
+
+drop table if EXISTS parquetdb.site_adPlayv1;
+CREATE EXTERNAL TABLE parquetdb.site_adPlayv1(
+  uid string,
+  adid string,
+  guuid string,
+  createTime BIGINT
+  )
+partitioned by (dat string)
+stored as parquet
+LOCATION '/impala/parquet/site/site-adPlayv1';
+
 ### add partition
 
   alter table wxConcatFollowMACv3 add partition(dat ='20151016');
