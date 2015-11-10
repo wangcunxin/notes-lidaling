@@ -75,4 +75,8 @@ docker images --tree
 ```
 	sudo docker run -d -p 80:80 steeef/graphite-centos
 
-	docker 80端口映射到本地 
+	docker 80端口映射到本地
+
+### run /bin/bash on a running container
+
+	sudo docker exec -ti graphite /bin/bash
