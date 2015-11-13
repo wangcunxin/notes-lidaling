@@ -108,6 +108,10 @@ right join bblink_wifi_info w
 on w.hospital_id=h.hospital_id 
 where w.gw_id='4971A7218F';
 
+- get user login log by mac 
+
+select * from bblink_wxcity_user_info where mac='20:A2:E4:3E:26:6D' order by login_time desc limit 20;
+
 ---
 sql if condation
 SELECT  if(now()>'2015-07-14 15:00',10,1)
