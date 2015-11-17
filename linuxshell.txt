@@ -33,3 +33,8 @@ deb
 		update-alternatives --install /usr/bin/javac javac /usr/local/common/j2sdk1.4.2_18/bin/javac 300
 
 rpm
+
+
+locate
+
+	find file by filename

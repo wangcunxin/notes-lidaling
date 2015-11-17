@@ -452,13 +452,56 @@ create EXTERNAL table txtdb.back_portal_wechatlog(
     log_time	bigint
     )
     partitioned by (dat STRING)
-    ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+    stored as parquet
     LOCATION '/impala/parquet/back/back-portal-wechatlog';
 
 --- the view
 
 CREATE VIEW IF NOT EXISTS simpledata.back_portal_wechatlog
   AS select * from parquetdb.back_portal_wechatlog union select * from  txtdb.back_portal_wechatlog
+
+
+### back-portal-authorizedlog
+
+drop table if exists txtdb.back_portal_authorizedlog;
+create EXTERNAL table txtdb.back_portal_authorizedlog(
+  dfrom string,
+  id string,
+  userId string,
+  gwId string,
+  userType string,
+  userMac string,
+  authorizeTime bigint,
+  createTime bigint,
+  success string,
+  hosId string
+  )
+  partitioned by (dat STRING)
+  ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+  LOCATION '/impala/txt/back/back-portal-authorizedlog';
+
+  drop table if exists parquetdb.back_portal_authorizedlog;
+  create EXTERNAL table parquetdb.back_portal_authorizedlog(
+    dfrom string,
+    id string,
+    userId string,
+    gwId string,
+    userType string,
+    userMac string,
+    authorizeTime bigint,
+    createTime bigint,
+    success string,
+    hosId string
+    )
+    partitioned by (dat STRING)
+    stored as parquet
+    LOCATION '/impala/parquet/back/back-portal-authorizedlog';
+
+--- the view
+
+CREATE VIEW IF NOT EXISTS simpledata.back_portal_authorizedlog
+  AS select * from parquetdb.back_portal_authorizedlog union select * from  txtdb.back_portal_authorizedlog
+
 
 
 
