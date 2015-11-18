@@ -80,3 +80,18 @@ docker images --tree
 ### run /bin/bash on a running container
 
 	sudo docker exec -ti graphite /bin/bash
+
+### run in error
+
+	sometime you need to check /var/log/docker file
+
+### run
+
+	docker run -d --name=graphite -p 80:80 -p 2003:2003 -p 2004:2004 -p 7002:7002 steeef/graphite-centos
+	docker run -d --name=grafana -p 3000:3000 grafana/grafana
+
+### move container
+
+	[ref](http://stackoverflow.com/questions/28734086/how-to-move-docker-containers-between-different-hosts)
+	docker export <CONTAINER ID> > /home/export.tar
+	cat /home/export.tar | docker import - some-name:latest

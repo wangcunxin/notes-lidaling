@@ -502,8 +502,42 @@ create EXTERNAL table txtdb.back_portal_authorizedlog(
 CREATE VIEW IF NOT EXISTS simpledata.back_portal_authorizedlog
   AS select * from parquetdb.back_portal_authorizedlog union select * from  txtdb.back_portal_authorizedlog
 
+### pageflowv1
+
+create EXTERNAL table txtdb.site_pageflowv1(
+       flowid string,
+       name string,
+       guuid string,
+       guuidCTime string,
+       url string ,
+       hosid string,
+       gwid string,
+       createTime string  
+  )
+  partitioned by (dat STRING)
+  ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+  LOCATION '/impala/txt/site/site-pageflowv1';
 
 
+
+  create EXTERNAL table parquetdb.site_pageflowv1(
+         flowid string,
+         name string,
+         guuid string,
+         guuidCTime string,
+         url string ,
+         hosid string,
+         gwid string,
+         createTime string  
+    )
+partitioned by (dat STRING)
+stored as parquet
+LOCATION '/impala/parquet/site/site-pageflowv1';
+
+--- the view
+
+CREATE VIEW IF NOT EXISTS simpledata.site-pageflowv1
+ AS select * from parquetdb.site_pageflowv1 union select * from  txtdb.site_pageflowv1
 
 
 ### add partition
