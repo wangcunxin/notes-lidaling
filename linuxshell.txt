@@ -38,3 +38,13 @@ rpm
 locate
 
 	find file by filename
+
+-- httpie
+
+one human http tool like curl
+
+	http --verbose post http://112.65.205.80:12048/router/52a2a103d3744fb5e3ac9e857ce6e671/auth/whitelist?partner=2014071717480672279 macs:='[""]'
+
+set headers
+
+	http --verbose --ignore-stdin --json post http://192.168.0.95:30000/data datatype=hosWiFiLogWechatFlow time=2015-09-12 23:44:45 data:='["eyJnd0lkIjoiQiIsImhvc0lkIjoiYmJsaW5rLWhvc2lkIiwic3VwcElkIjoiMCIsInVzZXJNYWMiOiIwMDpGRjpDQzpBQTpFRSIsInR5cGUiOiIxLXRlc3QiLCJsb2dUaW1lIjoxNDQ4NTAwNjgyMDAwLCJhdXRoVHlwZSI6IiJ9"]' from=portal Content-Type:application/vnd.bblink.remote-access.v1+json

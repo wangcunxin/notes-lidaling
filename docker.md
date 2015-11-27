@@ -88,10 +88,18 @@ docker images --tree
 ### run
 
 	docker run -d --name=graphite -p 80:80 -p 2003:2003 -p 2004:2004 -p 7002:7002 steeef/graphite-centos
-	docker run -d --name=grafana -p 3000:3000 grafana/grafana
+	docker run -d --name=grafana -e "auth.anonymous.enabled=true" -p 3000:3000 grafana/grafana
 
 ### move container
 
 	[ref](http://stackoverflow.com/questions/28734086/how-to-move-docker-containers-between-different-hosts)
 	docker export <CONTAINER ID> > /home/export.tar
 	cat /home/export.tar | docker import - some-name:latest
+
+### error
+
+```
+Error response from daemon: Cannot start container graphite: iptables failed: iptables -t nat -A DOCKER -p tcp -d 0/0 --dport 7002 -j DNAT --to-destination 172.17.0.4:7002 ! -i docker0: iptables: No chain/target/match by that name.
+```
+
+just do : service docker restart

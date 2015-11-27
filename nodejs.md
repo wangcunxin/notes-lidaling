@@ -82,3 +82,8 @@ NODE_ENV=production forever start -l ~/.forever/forever.log -e ~/.forever/err.lo
 
 上面加上NODE_ENV为了让app.js辨认当前是什么环境用的。不加它可能就不知道哦？
 一些注意点
+
+### monitor node app and restart solution
+
+  [stackoverflow](http://stackoverflow.com/questions/23713508/restart-node-js-forever-process-if-response-time-too-big)
+  [monit](http://howtonode.org/deploying-node-upstart-monit)
