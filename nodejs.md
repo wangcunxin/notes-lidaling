@@ -87,3 +87,10 @@ NODE_ENV=production forever start -l ~/.forever/forever.log -e ~/.forever/err.lo
 
   [stackoverflow](http://stackoverflow.com/questions/23713508/restart-node-js-forever-process-if-response-time-too-big)
   [monit](http://howtonode.org/deploying-node-upstart-monit)
+
+### rest load test
+
+  https://github.com/jeffbski/bench-rest#rest-flow
+  https://github.com/shoreditch-ops/minigun
+  https://github.com/jpillora/node-load-tester
+  https://github.com/mithunsatheesh/node-stress

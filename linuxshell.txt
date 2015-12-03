@@ -48,3 +48,17 @@ one human http tool like curl
 set headers
 
 	http --verbose --ignore-stdin --json post http://192.168.0.95:30000/data datatype=hosWiFiLogWechatFlow time=2015-09-12 23:44:45 data:='["eyJnd0lkIjoiQiIsImhvc0lkIjoiYmJsaW5rLWhvc2lkIiwic3VwcElkIjoiMCIsInVzZXJNYWMiOiIwMDpGRjpDQzpBQTpFRSIsInR5cGUiOiIxLXRlc3QiLCJsb2dUaW1lIjoxNDQ4NTAwNjgyMDAwLCJhdXRoVHlwZSI6IiJ9"]' from=portal Content-Type:application/vnd.bblink.remote-access.v1+json
+
+-- network
+
+	nc
+
+	# receiver
+	nc -l -p 5555 -q 2 >/tmp/test.csv
+	# sender
+	nc ip port < file
+
+
+
+tcpdump
+wireshark
