@@ -233,235 +233,177 @@ partitioned by (dat STRING)
 stored as parquet
 LOCATION '/impala/parquet/back/back-portal-loginlog';
 
-### log_login_flow
-drop table if exists txtdb.back_portal_loginflowlog;
-create EXTERNAL table txtdb.back_portal_loginflowlog(
+### back-portal-authorizedlog
+
+drop table if exists txtdb.back_portal_authorizedlog;
+create EXTERNAL table txtdb.back_portal_authorizedlog(
   dfrom string,
-log_id	bigint,
-log_type	string,
-session_id	string,
-hos_id	bigint,
-supp_id	bigint,
-gw_id	string,
-gw_mac	string,
-gw_ip	string,
-ap_mac	string,
-ap_ip	string,
-bssid	string,
-ssid	string,
-user_mac	string,
-user_ip	string,
-login_version	string,
-forward_version	string,
-arrive_version	string,
-in_page_url	string,
-out_page_url	string,
-this_page_url	string,
-user_agent	string,
-login_type	string,
-user_id	bigint,
-is_new_user	string,
-mobile	string,
-auth_code	string,
-user_in_auth_code	string,
-captcher_ask	string,
-captcher_result	string,
-user_in_captcher_result	string,
-auth_request	string,
-auth_reponse	string,
-auth_status	string,
-auth_fail_count	int,
-mp_app_id	string,
-user_open_id	string,
-attention_status	string,
-request	string,
-reponse	string,
-remark	string,
-log_time	bigint
-)
-partitioned by (dat STRING)
-ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
-LOCATION '/impala/txtdb/back/back-portal-loginflowlog';
-
-drop table if exists parquetdb.back_portal_loginflowlog;
-create EXTERNAL table parquetdb.back_portal_loginflowlog(
-  dfrom string,
-log_id	bigint,
-log_type	string,
-session_id	string,
-hos_id	bigint,
-supp_id	bigint,
-gw_id	string,
-gw_mac	string,
-gw_ip	string,
-ap_mac	string,
-ap_ip	string,
-bssid	string,
-ssid	string,
-user_mac	string,
-user_ip	string,
-login_version	string,
-forward_version	string,
-arrive_version	string,
-in_page_url	string,
-out_page_url	string,
-this_page_url	string,
-user_agent	string,
-login_type	string,
-user_id	bigint,
-is_new_user	string,
-mobile	string,
-auth_code	string,
-user_in_auth_code	string,
-captcher_ask	string,
-captcher_result	string,
-user_in_captcher_result	string,
-auth_request	string,
-auth_reponse	string,
-auth_status	string,
-auth_fail_count	int,
-mp_app_id	string,
-user_open_id	string,
-attention_status	string,
-request	string,
-reponse	string,
-remark	string,
-log_time	bigint
-)
-partitioned by (dat STRING)
-stored as parquet
-LOCATION '/impala/parquet/back/back-portal-loginflowlog';
-
---- the view
-
-CREATE VIEW IF NOT EXISTS simpledata.back_portal_loginflowlog
-  AS select * from parquetdb.back_portal_loginflowlog union select * from  txtdb.back_portal_loginflowlog
-
-
-### log_user
-
-drop table if exists txtdb.back_portal_userloginlog;
-create EXTERNAL table txtdb.back_portal_userloginlog(
-  dfrom string,
-  user_type	string,
-  user_name	string,
-  user_id	bigint,
-  user_agent	string,
-  upload_flow	bigint,
-  supp_id	bigint,
-  session_id	string,
-  ratio	string,
-  os	string,
-  mac	string,
-  logout_time	bigint,
-  login_time	bigint,
-  log_id	bigint,
-  ip	string,
-  hos_id	bigint,
-  gw_id	string,
-  download_flow	bigint,
-  browser	string,
-  batch_no	string
+  id string,
+  userId string,
+  gwId string,
+  userType string,
+  userMac string,
+  authorizeTime bigint,
+  createTime bigint,
+  success string,
+  hosId string
   )
   partitioned by (dat STRING)
   ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
-  LOCATION '/impala/txtdb/back/back-portal-userloginlog';
+  LOCATION '/impala/txt/back/back-portal-authorizedlog';
 
-
-drop table if not exists parquetdb.back_portal_userloginlog;
-create EXTERNAL table parquetdb.back_portal_userloginlog(
-  dfrom string,
-  user_type	string,
-  user_name	string,
-  user_id	bigint,
-  user_agent	string,
-  upload_flow	bigint,
-  supp_id	bigint,
-  session_id	string,
-  ratio	string,
-  os	string,
-  mac	string,
-  logout_time	bigint,
-  login_time	bigint,
-  log_id	bigint,
-  ip	string,
-  hos_id	bigint,
-  gw_id	string,
-  download_flow	bigint,
-  browser	string,
-  batch_no	string
-  )
-  partitioned by (dat STRING)
-  stored as parquet
-  LOCATION '/impala/parquet/back/back-portal-userloginlog';
-
---- the view
-CREATE VIEW IF NOT EXISTS simpledata.back_portal_userloginlog
-  AS select * from parquetdb.back_portal_userloginlog union select * from  txtdb.back_portal_userloginlog
-
-
-### log_wechat_flow
-
-
-drop table if exists txtdb.back_portal_wechatlog;
-create EXTERNAL table txtdb.back_portal_wechatlog(
-  dfrom string,
-  log_id	bigint,
-  session_id	string,
-  gw_id	string,
-  hos_id	bigint,
-  gw_ip	string,
-  gw_mac	string,
-  supp_id	string,
-  ap_mac	string,
-  ap_ip	string,
-  bssid	string,
-  ssid	string,
-  user_mac	string,
-  open_id	string,
-  mp_app_id	string,
-  request	string,
-  response	string,
-  type	string,
-  log_time	bigint
-  )
-  partitioned by (dat STRING)
-  ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
-  LOCATION '/impala/txt/back/back-portal-wechatlog';
-
-  drop table if exists parquetdb.back_portal_wechatlog;
-  create EXTERNAL table parquetdb.back_portal_wechatlog(
+  drop table if exists parquetdb.back_portal_authorizedlog;
+  create EXTERNAL table parquetdb.back_portal_authorizedlog(
     dfrom string,
-    log_id	bigint,
-    session_id	string,
-    gw_id	string,
-    hos_id	bigint,
-    gw_ip	string,
-    gw_mac	string,
-    supp_id	string,
-    ap_mac	string,
-    ap_ip	string,
-    bssid	string,
-    ssid	string,
-    user_mac	string,
-    open_id	string,
-    mp_app_id	string,
-    request	string,
-    response	string,
-    type	string,
-    log_time	bigint
+    id string,
+    userId string,
+    gwId string,
+    userType string,
+    userMac string,
+    authorizeTime bigint,
+    createTime bigint,
+    success string,
+    hosId string
     )
     partitioned by (dat STRING)
-    ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
-    LOCATION '/impala/parquet/back/back-portal-wechatlog';
+    stored as parquet
+    LOCATION '/impala/parquet/back/back-portal-authorizedlog';
 
 --- the view
 
-CREATE VIEW IF NOT EXISTS simpledata.back_portal_wechatlog
-  AS select * from parquetdb.back_portal_wechatlog union select * from  txtdb.back_portal_wechatlog
+CREATE VIEW IF NOT EXISTS simpledata.back_portal_authorizedlog
+  AS select * from parquetdb.back_portal_authorizedlog union select * from  txtdb.back_portal_authorizedlog
+
+### pageflowv1
+
+create EXTERNAL table txtdb.site_pageflowv1(
+       flowid string,
+       name string,
+       guuid string,
+       guuidCTime bigint,
+       url string ,
+       hosid string,
+       gwid string,
+       createTime bigint)
+  partitioned by (dat STRING)
+  ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+  LOCATION '/impala/txt/site/site-pageflowv1';
 
 
 
+  create EXTERNAL table parquetdb.site_pageflowv1(
+         flowid string,
+         name string,
+         guuid string,
+         guuidCTime bigint,
+         url string ,
+         hosid string,
+         gwid string,
+         createTime bigint)
+partitioned by (dat STRING)
+stored as parquet
+LOCATION '/impala/parquet/site/site-pageflowv1';
+
+--- the view
+
+CREATE VIEW IF NOT EXISTS simpledata.site-pageflowv1
+ AS select * from parquetdb.site_pageflowv1 union select * from  txtdb.site_pageflowv1
+
+### back_portal_loginflowlog
+
+
+drop table if exists parquetdb.back_portal_loginflowlog;
+create external table parquetdb.back_portal_loginflowlog(
+logType string,hosId string,suppId string,gwId string,userMac string,loginVersion string,forwardVersion string,arriveVersion string,loginType string,isNewUser string,logTime bigint
+)
+partitioned by (dat string)
+stored as parquet
+location '/impala/parquet/back/back-portal-loginflowlog'
+
+
+drop table if exists txtdb.back_portal_loginflowlog;
+create external table txtdb.back_portal_loginflowlog(
+  dfrom string,logType string,hosId string,suppId string,gwId string,userMac string,loginVersion string,forwardVersion string,arriveVersion string,loginType string,isNewUser string,logTime bigint
+  )
+  partitioned by (dat string)
+  row format delimited fields terminated by '\t'
+  location '/impala/txt/back/back-portal-loginflowlog'
+
+# back_portal_wechatflowlog
+
+
+drop table if exists parquetdb.back_portal_wechatflowlog;
+create external table parquetdb.back_portal_wechatflowlog(
+  dfrom string,gwId string,hosId string,suppId string,userMac string,type string,logTime bigint,authType string
+)
+partitioned by (dat string)
+stored as parquet
+location '/impala/parquet/back/back-portal-wechatflowlog'
+
+
+drop table if exists txtdb.back_portal_wechatflowlog;
+create external table txtdb.back_portal_wechatflowlog(
+  dfrom string,gwId string,hosId string,suppId string,userMac string,type string,logTime bigint,authType string
+  )
+  partitioned by (dat string)
+  row format delimited fields terminated by '\t'
+  location '/impala/txt/back/back-portal-wechatflowlog'
+
+### back-hoswifi-wechatAttentionAdd
+
+drop table if exists parquetdb.back_hoswifi_wechatAttentionAdd;
+create external table parquetdb.back_hoswifi_wechatAttentionAdd(
+  dfrom string,openId string,appId string,hosId string,gwId string,suppId string,attentionTime bigint,logTime bigint,userAgent string
+)
+partitioned by (dat string)
+stored as parquet
+location '/impala/parquet/back/back-hoswifi-wechatAttentionAdd'
+
+drop table if exists txtdb.back_hoswifi_wechatAttentionAdd;
+create external table txtdb.back_hoswifi_wechatAttentionAdd(
+  dfrom string,openId string,appId string,hosId string,gwId string,suppId string,attentionTime bigint,logTime bigint,userAgent string
+)
+partitioned by (dat string)
+row format delimited fields terminated by '\t'
+location '/impala/txt/back/back-hoswifi-wechatAttentionAdd'
+
+
+### back-hoswifi-wechatAttention
+
+drop table if exists parquetdb.back_hoswifi_wechatAttention;
+create external table parquetdb.back_hoswifi_wechatAttention(
+  dfrom string,follow string,loginVersion string,arriveVersion string, hosId string,appId string,weixinWifiShopid string,weixinWifiBssid string,originId string,weixinWifiSsid string,openId string,gwId string,suppId string,logTime bigint,url string,userAgent string
+)
+partitioned by (dat string)
+stored as parquet
+location '/impala/parquet/back/back-hoswifi-wechatAttention'
+
+drop table if exists txtdb.back_hoswifi_wechatAttention;
+create external table txtdb.back_hoswifi_wechatAttention(
+  dfrom string,follow string,loginVersion string,arriveVersion string, hosId string,appId string,weixinWifiShopid string,weixinWifiBssid string,originId string,weixinWifiSsid string,openId string,gwId string,suppId string,logTime bigint,url string,userAgent string
+
+)
+partitioned by (dat string)
+row format delimited fields terminated by '\t'
+location '/impala/txt/back/back-hoswifi-wechatAttention'
+
+### model
+
+drop table if exists parquetdb.back_portal_loginflowlog;
+create external table parquetdb.back_portal_loginflowlog(
+  dfrom string,logType string,hosId string,suppId string,gwId string,userMac string,loginVersion string,forwardVersion string,arriveVersion string,loginType string,isNewUser string,logTime bigint
+)
+partitioned by (dat string)
+stored as parquet
+location '/impala/parquet/back/back-portal-loginflowlog'
+
+drop table if exists txtdb.back_portal_loginflowlog;
+create external table txtdb.back_portal_loginflowlog(
+  dfrom string,logType string,hosId string,suppId string,gwId string,userMac string,loginVersion string,forwardVersion string,arriveVersion string,loginType string,isNewUser string,logTime bigint
+)
+partitioned by (dat string)
+row format delimited fields terminated by '\t'
+location '/impala/txt/back/back-portal-loginflowlog'
 
 ### add partition
 

@@ -2,8 +2,8 @@ gnome extensions:
 
  switcher
  Overview All Windows
- Coverflow Alt-Tab 
+ Coverflow Alt-Tab
 
-good look gnome 
+good look gnome
 
 http://samuelhewitt.com/paper
