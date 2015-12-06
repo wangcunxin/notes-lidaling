@@ -18,3 +18,9 @@ error:
 ### about express  koa  hapi web framework
 
     http://segmentfault.com/a/1190000002421718
+
+### other
+
+jscore
+
+  one lib can run on mobile devices
