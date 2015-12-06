@@ -23,6 +23,12 @@ http://archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/x86_64/
 parcel download page:
 http://archive.cloudera.com/cdh5/parcels/
 
+### parcels
+
+download parcels and sha1 file from http://archive.cloudera.com/cdh5/parcels/
+
+then rename *.sha1 file to *.sha
+
 wget -r -np -nH http://archive-primary.cloudera.com/cm5/redhat/6/x86_64/cm/5/RPMS/x86_64/ && wget -r -np -nH http://archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/noarch && wget -r -np -nH http://archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/x86_64
 
 scp cm5/redhat/6/x86_64/cm/5/RPMS/x86_64/*.rpm cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/noarch/*.rpm cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/x86_64/*.rpm root@192.168.0.96:/var/http/pub/
