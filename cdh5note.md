@@ -1,47 +1,49 @@
-cdh5 tarball http://archive.cloudera.com/cdh5/repo-as-tarball/
+### links
 
-http://blog.csdn.net/hua840812/article/details/27704025
-http://blog.csdn.net/kissmelove01/article/details/44680255
-http://blog.csdn.net/hualiu163/article/details/46659375
-http://blog.csdn.net/forest_boy/article/details/5636696
-http://itindex.net/detail/51928-cloudera-manager-cdh5
+install help :
 
-安装 mysql后的配置 ，查看 /var/log/mysqld.log，看是否有相关错误
+	http://blog.csdn.net/hua840812/article/details/27704025
+	http://blog.csdn.net/kissmelove01/article/details/44680255
+	http://blog.csdn.net/hualiu163/article/details/46659375
+	http://blog.csdn.net/forest_boy/article/details/5636696
+	http://itindex.net/detail/51928-cloudera-manager-cdh5
 
-``
-yum install mysql-server`
+cdh5 tarball
 
-```
+	http://archive.cloudera.com/cdh5/repo-as-tarball/
 
 rmp download page:
 
-	if the download speed is low ,try the domain:	http://archive.cloudera.com
+	http://archive-primary.cloudera.com/cm5/redhat/6/x86_64/cm/5/RPMS/x86_64/
+	http://archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/noarch/
+	http://archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/x86_64/
 
-http://archive-primary.cloudera.com/cm5/redhat/6/x86_64/cm/5/RPMS/x86_64/
-http://archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/noarch/
-http://archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/x86_64/
-parcel download page:
-http://archive.cloudera.com/cdh5/parcels/
+	if the download speed is low ,try the domain:
+		http://archive.cloudera.com
 
-### parcels
+- parcels
 
-download parcels and sha1 file from http://archive.cloudera.com/cdh5/parcels/
+repl location :
+
+	/opt/cloudera/parcel-repo
+
+download parcels and sha1 file from
+
+	http://archive.cloudera.com/cdh5/parcels/
 
 then rename *.sha1 file to *.sha
 
-wget -r -np -nH http://archive-primary.cloudera.com/cm5/redhat/6/x86_64/cm/5/RPMS/x86_64/ && wget -r -np -nH http://archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/noarch && wget -r -np -nH http://archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/x86_64
+	wget -r -np -nH http://archive-primary.cloudera.com/cm5/redhat/6/x86_64/cm/5/RPMS/x86_64/ && wget -r -np -nH http://archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/noarch && wget -r -np -nH http://archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/x86_64
 
-scp cm5/redhat/6/x86_64/cm/5/RPMS/x86_64/*.rpm cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/noarch/*.rpm cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/x86_64/*.rpm root@192.168.0.96:/var/http/pub/
+	scp cm5/redhat/6/x86_64/cm/5/RPMS/x86_64/*.rpm cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/noarch/*.rpm cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/x86_64/*.rpm root@192.168.0.96:/var/http/pub/
 
-clouder manager 端口 7180
+### mysql
 
-google 统计 代码：
-cd /usr/share/cmf/webapp/static/ext/google-analytics/scmx.js
+	yum install mysql-server
 
-注释掉相关 请求代码
-https://azkaban.github.io/
-like oozie
+安装 mysql后的配置 ，查看 /var/log/mysqld.log，看是否有相关错误
 
+```
 create database amon DEFAULT CHARACTER SET utf8;
 create database rman DEFAULT CHARACTER SET utf8;
 create database metastore DEFAULT CHARACTER SET utf8;
@@ -79,7 +81,11 @@ drop database navms;
 drop database ooziedata;
 drop database monitordata;
 drop database scm;
+```
 
+- mysql conf
+
+```
 [mysqld]
 default-storage-engine = innodb
 transaction-isolation = READ-COMMITTED
@@ -115,10 +121,9 @@ innodb_log_file_size = 128M
 [mysqld_safe]
 log-error=/var/log/mysqld.log
 pid-file=/var/run/mysqld/mysqld.pid
+```
 
-
-
-nginx配置
+### nginx配置
 
 /etc/nginx/conf.d/defautl.conf
 
@@ -127,43 +132,66 @@ nginx配置
 	autoindex	on;
 ```
 
+### centos repo conf
+
 cdh5.repo配置
 
-	[cdh5]
-	name=cdh5 repo
-	baseurl=http://cdh-master
-	gpgcheck=0
-
-jdk 安装配置
+```
+[cdh5]
+name=cdh5 repo
+baseurl=http://cdh-master
+gpgcheck=0
+```
+### jdk 安装配置
 
 	yum search oracle
-    yum install oracle-j2sdk1.7.x86_64
+  yum install oracle-j2sdk1.7.x86_64
 
-wget http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.18/mysql-connector-java-5.1.18.jar
+- install mysql connector
 
-使用 Parcel (建议),下载地址：http://archive.cloudera.com/cdh5/parcels/5/
+	cd $JAVA_HOME/jre/lib/ext
+	wget http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.18/mysql-connector-java-5.1.18.jar
 
-$ yum install -y cloudera-manager-daemons cloudera-manager-server
+### install cloudera-manager-server
 
-/usr/share/cmf/schema/scm_prepare_database.sh mysql -uroot -p --scm-host localhost scm scm scm
+- install
 
-$ service cloudera-scm-server start
+	yum install -y cloudera-manager-daemons cloudera-manager-server
 
-## ntp
+- init
 
-vim /etc/ntp.conf
+	/usr/share/cmf/schema/scm_prepare_database.sh mysql -uroot -p --scm-host localhost scm scm scm
 
+- start
+
+	service cloudera-scm-server start
+
+### help info
+
+clouder manager webui port: 7180
+
+google 统计 代码：
+
+	cd /usr/share/cmf/webapp/static/ext/google-analytics/scmx.js
+	注释掉相关 请求代码
+
+- like oozie
+
+	https://azkaban.github.io/
+
+- ntp
+
+	vim /etc/ntp.conf
+
+```
 server 2.cn.pool.ntp.org
 server 0.asia.pool.ntp.org
 server 3.asia.pool.ntp.org
+```
 
-service ntpd start
-chkconfig ntpd on
+	service ntpd start
+	chkconfig ntpd on
 
-
-
-
-repl 包放在  /opt/cloudera/parcel-repo
 
 
 
@@ -200,16 +228,12 @@ sudo mv /usr/bin/host /usr/bin/host.bak
 		service rpcbind start
 		chkconfig rpcbind on
 
+### help commands
 
-ssh-copy-id -i ~/.ssh/id_pub. root@slave03
-
-hadoop classpath  see hadoop_conf_dir LOCATION
-
-### change hostname
-
-issue command:
-
+- ssh-copy-id -i ~/.ssh/id_pub. root@slave03
+- hadoop classpath  see hadoop_conf_dir LOCATION
+- change hostname
+	issue command:
 	hostname newhostname
-
-then type:
+	then type:
 	bash

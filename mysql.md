@@ -58,4 +58,8 @@ Database /path/to/csvfile/TableName.csv
 ## datetime
 
 	UNIX_TIMESTAMP('2015-01-15 12:00:00');
-	FROM_UNIXTIME(timestamp) 
+	FROM_UNIXTIME(timestamp)
+
+## UNIQUE key add 
+
+	ALTER TABLE example ADD UNIQUE KEY abc_ndx (a,b,c);

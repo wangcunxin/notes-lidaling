@@ -21,7 +21,7 @@ create user with group:
 	sudo addgroup impala
 	sudo adduser -ingroup impala
 
-create user and groupname same as username ,and without home dir:
+create user and groupname same as username ,and without home dir ,password:
 
 	useradd impala -M -s /bin/bash -p '*'
 
