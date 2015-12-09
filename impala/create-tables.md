@@ -71,9 +71,35 @@ LOCATION '/impala/tbs/site/site-wxConcatFollowv3';
 
 ```
 
-```
-DROP TABLE IF EXISTS site-sitePVv3;
-CREATE TABLE site-sitePVv3(
+### site-sitePVv3
+
+
+DROP TABLE IF EXISTS parquetdb.site_sitePVv3;
+CREATE TABLE parquetdb.site_sitePVv3(
+  pid string,
+  guuid string,
+  guuidCTime int,
+  uuid string,
+  uuidCTime string,
+  ip string,
+  ua string,
+  createTime int,
+  pageTitle string,
+  url string,
+  referer string,
+  language string,
+  cookieEnabled string,
+  sw smallint,
+  sh smallint,
+  prevPID smallint,
+  prevTime smallint
+)
+partitioned by (dat string)
+stored as parquet
+LOCATION '/impala/parquet/site/site-sitePVv3';
+
+DROP TABLE IF EXISTS txtdb.site_sitePVv3;
+CREATE TABLE txtdb.site_sitePVv3(
   pid string,
   guuid string,
   guuidCTime int,
@@ -94,8 +120,7 @@ CREATE TABLE site-sitePVv3(
 )
 partitioned by (dat string)
 ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
-LOCATION '/impala/tbs/site/site-sitePVv3';
-```
+LOCATION '/impala/txt/site/site-sitePVv3';
 
 ### adLoad
 
@@ -170,7 +195,7 @@ CREATE EXTERNAL TABLE txtdb.site_adPlayv1(
   )
 partitioned by (dat string)
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
-LOCATION '/impala/txt/site/site-adPlayv1site-adClickv1';
+LOCATION '/impala/txt/site/site-adPlayv1';
 
 drop table if EXISTS parquetdb.site_adPlayv1;
 CREATE EXTERNAL TABLE parquetdb.site_adPlayv1(
@@ -289,8 +314,6 @@ create EXTERNAL table txtdb.site_pageflowv1(
   ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
   LOCATION '/impala/txt/site/site-pageflowv1';
 
-
-
   create EXTERNAL table parquetdb.site_pageflowv1(
          flowid string,
          name string,
@@ -387,7 +410,7 @@ partitioned by (dat string)
 row format delimited fields terminated by '\t'
 location '/impala/txt/back/back-hoswifi-wechatAttention'
 
-### model
+### model [template]
 
 drop table if exists parquetdb.back_portal_loginflowlog;
 create external table parquetdb.back_portal_loginflowlog(

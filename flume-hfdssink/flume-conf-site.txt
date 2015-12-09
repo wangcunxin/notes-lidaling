@@ -14,7 +14,7 @@ agent_site.sources.src_site-sitePVv3.batchSize = 1000
 agent_site.sources.src_site-sitePVv3.groupId = group_site-sitePVv3
 
 #define sink
-agent_site.sinks.sink_site-sitePVv3.type = org.apache.flume.sink.hdfs.HDFSBblinkEventSink
+agent_site.sinks.sink_site-sitePVv3.type = org.apache.flume.sink.customhdfs.HDFSEventSink
 agent_site.sinks.sink_site-sitePVv3.hdfs.writeFormat = Text
 agent_site.sinks.sink_site-sitePVv3.hdfs.fileType = DataStream
 agent_site.sinks.sink_site-sitePVv3.hdfs.filePrefix =flume
@@ -49,7 +49,7 @@ agent_site.sources.src_site-adLoadv1.batchSize = 1000
 agent_site.sources.src_site-adLoadv1.groupId = group_site-adLoadv1
 
 #define sink
-agent_site.sinks.sink_site-adLoadv1.type = org.apache.flume.sink.hdfs.HDFSBblinkEventSink
+agent_site.sinks.sink_site-adLoadv1.type = org.apache.flume.sink.customhdfs.HDFSEventSink
 agent_site.sinks.sink_site-adLoadv1.hdfs.writeFormat = Text
 agent_site.sinks.sink_site-adLoadv1.hdfs.fileType = DataStream
 agent_site.sinks.sink_site-adLoadv1.hdfs.filePrefix =flume
@@ -89,7 +89,7 @@ agent_site.sources.src_site-adPlayv1.batchSize = 1000
 agent_site.sources.src_site-adPlayv1.groupId = group_site-adPlayv1
 
 #define sink
-agent_site.sinks.sink_site-adPlayv1.type = org.apache.flume.sink.hdfs.HDFSBblinkEventSink
+agent_site.sinks.sink_site-adPlayv1.type = org.apache.flume.sink.customhdfs.HDFSEventSink
 agent_site.sinks.sink_site-adPlayv1.hdfs.writeFormat = Text
 agent_site.sinks.sink_site-adPlayv1.hdfs.fileType = DataStream
 agent_site.sinks.sink_site-adPlayv1.hdfs.filePrefix =flume
@@ -129,7 +129,7 @@ agent_site.sources.src_site-adClickv1.batchSize = 1000
 agent_site.sources.src_site-adClickv1.groupId = group_site-adClickv1
 
 #define sink
-agent_site.sinks.sink_site-adClickv1.type = org.apache.flume.sink.hdfs.HDFSBblinkEventSink
+agent_site.sinks.sink_site-adClickv1.type = org.apache.flume.sink.customhdfs.HDFSEventSink
 agent_site.sinks.sink_site-adClickv1.hdfs.writeFormat = Text
 agent_site.sinks.sink_site-adClickv1.hdfs.fileType = DataStream
 agent_site.sinks.sink_site-adClickv1.hdfs.filePrefix =flume
@@ -169,7 +169,7 @@ agent_site.sources.src_site-adMasterv1.batchSize = 1000
 agent_site.sources.src_site-adMasterv1.groupId = group_site-adMasterv1
 
 #define sink
-agent_site.sinks.sink_site-adMasterv1.type = org.apache.flume.sink.hdfs.HDFSBblinkEventSink
+agent_site.sinks.sink_site-adMasterv1.type = org.apache.flume.sink.customhdfs.HDFSEventSink
 agent_site.sinks.sink_site-adMasterv1.hdfs.writeFormat = Text
 agent_site.sinks.sink_site-adMasterv1.hdfs.fileType = DataStream
 agent_site.sinks.sink_site-adMasterv1.hdfs.filePrefix =flume
@@ -205,7 +205,7 @@ agent_site.sources.src_site-adMasterv2.batchSize = 1000
 agent_site.sources.src_site-adMasterv2.groupId = group_site-adMasterv2
 
 #define sink
-agent_site.sinks.sink_site-adMasterv2.type = org.apache.flume.sink.hdfs.HDFSBblinkEventSink
+agent_site.sinks.sink_site-adMasterv2.type = org.apache.flume.sink.customhdfs.HDFSEventSink
 agent_site.sinks.sink_site-adMasterv2.hdfs.writeFormat = Text
 agent_site.sinks.sink_site-adMasterv2.hdfs.fileType = DataStream
 agent_site.sinks.sink_site-adMasterv2.hdfs.filePrefix =flume
@@ -241,7 +241,7 @@ agent_site.sources.src_site-wxConcatFollowv3.batchSize = 1000
 agent_site.sources.src_site-wxConcatFollowv3.groupId = group_site-wxConcatFollowv3
 
 #define sink
-agent_site.sinks.sink_site-wxConcatFollowv3.type = org.apache.flume.sink.hdfs.HDFSBblinkEventSink
+agent_site.sinks.sink_site-wxConcatFollowv3.type = org.apache.flume.sink.customhdfs.HDFSEventSink
 agent_site.sinks.sink_site-wxConcatFollowv3.hdfs.writeFormat = Text
 agent_site.sinks.sink_site-wxConcatFollowv3.hdfs.fileType = DataStream
 agent_site.sinks.sink_site-wxConcatFollowv3.hdfs.filePrefix =flume
@@ -279,7 +279,7 @@ agent_site.sources.src_site-wxConcatFollowMACv3.batchSize = 1000
 agent_site.sources.src_site-wxConcatFollowMACv3.groupId = group_site-wxConcatFollowMACv3
 
 #define sink
-agent_site.sinks.sink_site-wxConcatFollowMACv3.type = org.apache.flume.sink.hdfs.HDFSBblinkEventSink
+agent_site.sinks.sink_site-wxConcatFollowMACv3.type = org.apache.flume.sink.customhdfs.HDFSEventSink
 agent_site.sinks.sink_site-wxConcatFollowMACv3.hdfs.writeFormat = Text
 agent_site.sinks.sink_site-wxConcatFollowMACv3.hdfs.fileType = DataStream
 agent_site.sinks.sink_site-wxConcatFollowMACv3.hdfs.filePrefix =flume
@@ -315,7 +315,7 @@ agent_site.sources.src_site-pageflowv1.batchSize = 1000
 agent_site.sources.src_site-pageflowv1.groupId = group_site-pageflowv1
 
 #define sink
-agent_site.sinks.sink_site-pageflowv1.type = org.apache.flume.sink.hdfs.HDFSBblinkEventSink
+agent_site.sinks.sink_site-pageflowv1.type = org.apache.flume.sink.customhdfs.HDFSEventSink
 agent_site.sinks.sink_site-pageflowv1.hdfs.writeFormat = Text
 agent_site.sinks.sink_site-pageflowv1.hdfs.fileType = DataStream
 agent_site.sinks.sink_site-pageflowv1.hdfs.filePrefix =flume

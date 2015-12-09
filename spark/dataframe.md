@@ -4,7 +4,7 @@ pandas_df = young.toPandas()
 #### Create a Spark DataFrame from Pandas
 spark_df = context.createDataFrame(pandas_df)
 
-### list to DataFrame 
+### list to DataFrame
 
 ```
  list=[
@@ -17,3 +17,48 @@ spark_df = context.createDataFrame(pandas_df)
 
  df=sqlContext.createDataFrame(list)
 ```
+
+###  har 合并文件的读取
+
+  inputSrc ="har://hdfs-master:8020/user/impala/impaladir/kafka01/20150909.har/part-*"
+
+### csv read
+
+    import csv
+    headers = ['col_a', 'col_b', 'col_c']
+    sc.textFile(filepath).map(lambda l: csv.DictReader([l], fieldnames=headers).next())
+
+### spark read with jdbc
+
+  # set evn
+  os.environ['SPARK_CLASSPATH']='/home/lidl/cloud/mysql-connector-java-5.1.36.jar'
+
+  df= sqlContext.load(
+      source='jdbc',
+      driver='com.mysql.jdbc.Driver',
+      url='jdbc:mysql://host.net/mugic?user=user&password=password',
+      dbtable='table_or_select')
+
+  or
+
+  df = sqlContext.read.format('jdbc').options(
+       url='jdbc:mysql://192.168.0.173:3306/bblink_data?user=bblink_hos&password=bblink_hos',
+       dbtable='(select hosid,gwid from bblink_data_hos_subject limit 20)as t'
+   ).load()
+
+
+### df from json
+
+  import json
+  ds = [{'a': {'b': {'c': 1}}}]
+  ds2 = [json.dumps(item) for item in ds]
+  df = sqlCtx.jsonRDD(sc.parallelize(ds2))
+  df.printSchema()
+
+# Creates a DataFrame from an RDD of tuple/list, list or pandas.DataFrame.
+
+[link](https://spark.apache.org/docs/1.5.2/api/python/pyspark.sql.html)
+[doc](https://spark.apache.org/docs/1.5.2/api/python/index.html)
+
+  d = [{'name': 'Alice', 'age': 1}]
+  sqlContext.createDataFrame(d).collect()

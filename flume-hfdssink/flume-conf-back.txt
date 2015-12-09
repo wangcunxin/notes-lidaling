@@ -2,20 +2,20 @@
 #back-portal-loginlog back-portal-authorizedlog back-wechatNewFanDetails
 
 #define agent_back
-agent_back.sources  = src_back-portal-loginlog src_back-portal-authorizedlog src_back-wechatNewFanDetails
-agent_back.channels = ch_back-portal-loginlog ch_back-portal-authorizedlog ch_back-wechatNewFanDetails
-agent_back.sinks    = sink_back-portal-loginlog sink_back-portal-authorizedlog sink_back-wechatNewFanDetails
+agent_back.sources  = src_back-portal-loginlog src_back-portal-authorizedlog src_back-wechatNewFanDetails src_back-wechatFanSurveyResult src_back-hoswifi-wechatAttention src_back-hoswifi-wechatAttentionAdd src_back-portal-loginflowlog src_back-portal-wechatlog
+agent_back.channels = ch_back-portal-loginlog ch_back-portal-authorizedlog ch_back-wechatNewFanDetails ch_back-wechatFanSurveyResult ch_back-hoswifi-wechatAttention ch_back-hoswifi-wechatAttentionAdd ch_back-portal-loginflowlog ch_back-portal-wechatlog
+agent_back.sinks    = sink_back-portal-loginlog sink_back-portal-authorizedlog sink_back-wechatNewFanDetails sink_back-wechatFanSurveyResult sink_back-hoswifi-wechatAttention sink_back-hoswifi-wechatAttentionAdd sink_back-portal-loginflowlog sink_back-portal-wechatlog
 
 #---------------back-portal-loginlog---------------1
 #define source
 agent_back.sources.src_back-portal-loginlog.type = org.apache.flume.source.kafka.KafkaSource
-agent_back.sources.src_back-portal-loginlog.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_back.sources.src_back-portal-loginlog.zookeeperConnect = zookeeper-01-sh:2181,zookeeper-02-sh:2181,zookeeper-03-sh:2181
 agent_back.sources.src_back-portal-loginlog.topic = back-portal-loginlog
 agent_back.sources.src_back-portal-loginlog.batchSize = 1000
 agent_back.sources.src_back-portal-loginlog.groupId = group_back-portal-loginlog
 
 #define sink
-agent_back.sinks.sink_back-portal-loginlog.type = hdfs
+agent_back.sinks.sink_back-portal-loginlog.type = org.apache.flume.sink.customhdfs.HDFSEventSink
 agent_back.sinks.sink_back-portal-loginlog.hdfs.writeFormat = Text
 agent_back.sinks.sink_back-portal-loginlog.hdfs.fileType = DataStream
 agent_back.sinks.sink_back-portal-loginlog.hdfs.filePrefix =flume
@@ -27,6 +27,11 @@ agent_back.sinks.sink_back-portal-loginlog.hdfs.rollInterval=600
 agent_back.sinks.sink_back-portal-loginlog.hdfs.batchSize=1000
 agent_back.sinks.sink_back-portal-loginlog.hdfs.idleTimeout=10000
 agent_back.sinks.sink_back-portal-loginlog.hdfs.callTimeout=10000
+# custom hdfs-impala configure
+agent_back.sinks.sink_back-portal-loginlog.partitionFormat=yyyyMMdd
+agent_back.sinks.sink_back-portal-loginlog.refCtimeColumn=createtime
+agent_back.sinks.sink_back-portal-loginlog.tableName=parquetdb.back_portal_loginlog,txtdb.back_portal_loginlog
+agent_back.sinks.sink_back-portal-loginlog.impalaUrl=jdbc:hive2://slave1:21050/;auth=noSasl
 
 #define channel
 agent_back.channels.ch_back-portal-loginlog.type = file
@@ -38,17 +43,16 @@ agent_back.channels.ch_back-portal-loginlog.dataDirs = /data/tmp/flume/data_back
 agent_back.sources.src_back-portal-loginlog.channels = ch_back-portal-loginlog
 agent_back.sinks.sink_back-portal-loginlog.channel = ch_back-portal-loginlog
 
-
 #---------------back-portal-authorizedlog---------------2
 #define source
 agent_back.sources.src_back-portal-authorizedlog.type = org.apache.flume.source.kafka.KafkaSource
-agent_back.sources.src_back-portal-authorizedlog.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_back.sources.src_back-portal-authorizedlog.zookeeperConnect = zookeeper-01-sh:2181,zookeeper-02-sh:2181,zookeeper-03-sh:2181
 agent_back.sources.src_back-portal-authorizedlog.topic = back-portal-authorizedlog
 agent_back.sources.src_back-portal-authorizedlog.batchSize = 1000
 agent_back.sources.src_back-portal-authorizedlog.groupId = group_back-portal-authorizedlog
 
 #define sink
-agent_back.sinks.sink_back-portal-authorizedlog.type = hdfs
+agent_back.sinks.sink_back-portal-authorizedlog.type = org.apache.flume.sink.customhdfs.HDFSEventSink
 agent_back.sinks.sink_back-portal-authorizedlog.hdfs.writeFormat = Text
 agent_back.sinks.sink_back-portal-authorizedlog.hdfs.fileType = DataStream
 agent_back.sinks.sink_back-portal-authorizedlog.hdfs.filePrefix =flume
@@ -60,6 +64,13 @@ agent_back.sinks.sink_back-portal-authorizedlog.hdfs.rollInterval=600
 agent_back.sinks.sink_back-portal-authorizedlog.hdfs.batchSize=1000
 agent_back.sinks.sink_back-portal-authorizedlog.hdfs.idleTimeout=10000
 agent_back.sinks.sink_back-portal-authorizedlog.hdfs.callTimeout=10000
+
+agent_back.sinks.sink_back-portal-authorizedlog.partitionFormat=yyyyMMdd
+agent_back.sinks.sink_back-portal-authorizedlog.refCtimeColumn=createtime
+agent_back.sinks.sink_back-portal-authorizedlog.tableName=parquetdb.back_portal_authorizedlog,txtdb.back_portal_authorizedlog
+agent_back.sinks.sink_back-portal-authorizedlog.impalaUrl=jdbc:hive2://slave1:21050/;auth=noSasl
+
+
 
 #define channel
 agent_back.channels.ch_back-portal-authorizedlog.type = file
@@ -74,13 +85,13 @@ agent_back.sinks.sink_back-portal-authorizedlog.channel = ch_back-portal-authori
 #---------------back-wechatNewFanDetails---------------3
 #define source
 agent_back.sources.src_back-wechatNewFanDetails.type = org.apache.flume.source.kafka.KafkaSource
-agent_back.sources.src_back-wechatNewFanDetails.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_back.sources.src_back-wechatNewFanDetails.zookeeperConnect = zookeeper-01-sh:2181,zookeeper-02-sh:2181,zookeeper-03-sh:2181
 agent_back.sources.src_back-wechatNewFanDetails.topic = back-wechatNewFanDetails
 agent_back.sources.src_back-wechatNewFanDetails.batchSize = 1000
 agent_back.sources.src_back-wechatNewFanDetails.groupId = group_back-wechatNewFanDetails
 
 #define sink
-agent_back.sinks.sink_back-wechatNewFanDetails.type = hdfs
+agent_back.sinks.sink_back-wechatNewFanDetails.type = org.apache.flume.sink.customhdfs.HDFSEventSink
 agent_back.sinks.sink_back-wechatNewFanDetails.hdfs.writeFormat = Text
 agent_back.sinks.sink_back-wechatNewFanDetails.hdfs.fileType = DataStream
 agent_back.sinks.sink_back-wechatNewFanDetails.hdfs.filePrefix =flume
@@ -92,6 +103,10 @@ agent_back.sinks.sink_back-wechatNewFanDetails.hdfs.rollInterval=600
 agent_back.sinks.sink_back-wechatNewFanDetails.hdfs.batchSize=1000
 agent_back.sinks.sink_back-wechatNewFanDetails.hdfs.idleTimeout=10000
 agent_back.sinks.sink_back-wechatNewFanDetails.hdfs.callTimeout=10000
+agent_back.sinks.sink_back-wechatNewFanDetails.partitionFormat=yyyyMMdd
+agent_back.sinks.sink_back-wechatNewFanDetails.refCtimeColumn=subscribetime
+agent_back.sinks.sink_back-wechatNewFanDetails.tableName=parquetdb.back_wechatNewFanDetails,txtdb.back_wechatNewFanDetails
+agent_back.sinks.sink_back-wechatNewFanDetails.impalaUrl=jdbc:hive2://slave1:21050/;auth=noSasl
 
 #define channel
 agent_back.channels.ch_back-wechatNewFanDetails.type = file
@@ -102,3 +117,193 @@ agent_back.channels.ch_back-wechatNewFanDetails.dataDirs = /data/tmp/flume/data_
 #define source and sink match channel
 agent_back.sources.src_back-wechatNewFanDetails.channels = ch_back-wechatNewFanDetails
 agent_back.sinks.sink_back-wechatNewFanDetails.channel = ch_back-wechatNewFanDetails
+
+#---------------back-wechatFanSurveyResult---------------3
+#define source
+agent_back.sources.src_back-wechatFanSurveyResult.type = org.apache.flume.source.kafka.KafkaSource
+agent_back.sources.src_back-wechatFanSurveyResult.zookeeperConnect = zookeeper-01-sh:2181,zookeeper-02-sh:2181,zookeeper-03-sh:2181
+agent_back.sources.src_back-wechatFanSurveyResult.topic = back-wechatFanSurveyResult
+agent_back.sources.src_back-wechatFanSurveyResult.batchSize = 1000
+agent_back.sources.src_back-wechatFanSurveyResult.groupId = group_back-wechatFanSurveyResult
+
+#define sink
+agent_back.sinks.sink_back-wechatFanSurveyResult.type = org.apache.flume.sink.customhdfs.HDFSEventSink
+agent_back.sinks.sink_back-wechatFanSurveyResult.hdfs.writeFormat = Text
+agent_back.sinks.sink_back-wechatFanSurveyResult.hdfs.fileType = DataStream
+agent_back.sinks.sink_back-wechatFanSurveyResult.hdfs.filePrefix =flume
+agent_back.sinks.sink_back-wechatFanSurveyResult.hdfs.useLocalTimeStamp = true
+agent_back.sinks.sink_back-wechatFanSurveyResult.hdfs.path = hdfs://master:8020/logs_origin/back/back-wechatFanSurveyResult/%Y%m%d
+agent_back.sinks.sink_back-wechatFanSurveyResult.hdfs.rollCount=0
+agent_back.sinks.sink_back-wechatFanSurveyResult.hdfs.rollSize=512000000
+agent_back.sinks.sink_back-wechatFanSurveyResult.hdfs.rollInterval=600
+agent_back.sinks.sink_back-wechatFanSurveyResult.hdfs.batchSize=1000
+agent_back.sinks.sink_back-wechatFanSurveyResult.hdfs.idleTimeout=10000
+agent_back.sinks.sink_back-wechatFanSurveyResult.hdfs.callTimeout=10000
+#agent_back.sinks.sink_back-wechatFanSurveyResult.tableName=simpledata.back_wechatFanSurveyResult
+#agent_back.sinks.sink_back-wechatFanSurveyResult.tableLocation=/impala/tbs/back/back-wechatFanSurveyResult
+#agent_back.sinks.sink_back-wechatFanSurveyResult.impalaUrl=jdbc:hive2://slave1:21050/;auth=noSasl
+
+#define channel
+agent_back.channels.ch_back-wechatFanSurveyResult.type = file
+agent_back.channels.ch_back-wechatFanSurveyResult.checkpointDir = /data/tmp/flume/checkpoint_back-wechatFanSurveyResult
+agent_back.channels.ch_back-wechatFanSurveyResult.dataDirs = /data/tmp/flume/data_back-wechatFanSurveyResult
+
+
+#define source and sink match channel
+agent_back.sources.src_back-wechatFanSurveyResult.channels = ch_back-wechatFanSurveyResult
+agent_back.sinks.sink_back-wechatFanSurveyResult.channel = ch_back-wechatFanSurveyResult
+
+#---------------back-hoswifi-wechatAttention---------------4
+#define source
+agent_back.sources.src_back-hoswifi-wechatAttention.type = org.apache.flume.source.kafka.KafkaSource
+agent_back.sources.src_back-hoswifi-wechatAttention.zookeeperConnect = zookeeper-01-sh:2181,zookeeper-02-sh:2181,zookeeper-03-sh:2181
+agent_back.sources.src_back-hoswifi-wechatAttention.topic = back-hoswifi-wechatAttention
+agent_back.sources.src_back-hoswifi-wechatAttention.batchSize = 1000
+agent_back.sources.src_back-hoswifi-wechatAttention.groupId = group_back-hoswifi-wechatAttention
+
+#define sink
+agent_back.sinks.sink_back-hoswifi-wechatAttention.type = org.apache.flume.sink.customhdfs.HDFSEventSink
+agent_back.sinks.sink_back-hoswifi-wechatAttention.hdfs.writeFormat = Text
+agent_back.sinks.sink_back-hoswifi-wechatAttention.hdfs.fileType = DataStream
+agent_back.sinks.sink_back-hoswifi-wechatAttention.hdfs.filePrefix =flume
+agent_back.sinks.sink_back-hoswifi-wechatAttention.hdfs.useLocalTimeStamp = true
+agent_back.sinks.sink_back-hoswifi-wechatAttention.hdfs.path = hdfs://master:8020/logs_origin/back/back-hoswifi-wechatAttention/%Y%m%d
+agent_back.sinks.sink_back-hoswifi-wechatAttention.hdfs.rollCount=0
+agent_back.sinks.sink_back-hoswifi-wechatAttention.hdfs.rollSize=512000000
+agent_back.sinks.sink_back-hoswifi-wechatAttention.hdfs.rollInterval=600
+agent_back.sinks.sink_back-hoswifi-wechatAttention.hdfs.batchSize=1000
+agent_back.sinks.sink_back-hoswifi-wechatAttention.hdfs.idleTimeout=10000
+agent_back.sinks.sink_back-hoswifi-wechatAttention.hdfs.callTimeout=10000
+agent_back.sinks.sink_back-hoswifi-wechatAttention.fieldsSeq=follow:string,loginVersion:string,arriveVersion:string, hosId:string,appId:string,weixinWifiShopid:string,weixinWifiBssid:string,originId:string,weixinWifiSsid:string,openId:string,gwId:string,suppId:string,logTime:bigint,url:string;userAgent:string
+agent_back.sinks.sink_back-hoswifi-wechatAttention.format=json
+agent_back.sinks.sink_back-hoswifi-wechatAttention.impalaUrl=jdbc:hive2://slave1:21050/;auth=noSasl
+agent_back.sinks.sink_back-hoswifi-wechatAttention.partitionFormat=yyyyMMdd
+agent_back.sinks.sink_back-hoswifi-wechatAttention.refCtimeColumn=logTime
+agent_back.sinks.sink_back-hoswifi-wechatAttention.refCtimeColumnEnable=false
+agent_back.sinks.sink_back-hoswifi-wechatAttention.tableName=parquetdb.back_hoswifi_wechatAttention,txtdb.back_hoswifi_wechatAttention
+
+#define channel
+agent_back.channels.ch_back-hoswifi-wechatAttention.type = file
+agent_back.channels.ch_back-hoswifi-wechatAttention.checkpointDir = /data/tmp/flume/checkpoint_back-hoswifi-wechatAttention
+agent_back.channels.ch_back-hoswifi-wechatAttention.dataDirs = /data/tmp/flume/data_back-hoswifi-wechatAttention
+
+
+#define source and sink match channel
+agent_back.sources.src_back-hoswifi-wechatAttention.channels = ch_back-hoswifi-wechatAttention
+agent_back.sinks.sink_back-hoswifi-wechatAttention.channel = ch_back-hoswifi-wechatAttention
+
+#---------------back-back-hoswifi-wechatAttentionAdd---------------5
+#define source
+agent_back.sources.src_back-hoswifi-wechatAttentionAdd.type = org.apache.flume.source.kafka.KafkaSource
+agent_back.sources.src_back-hoswifi-wechatAttentionAdd.zookeeperConnect = zookeeper-01-sh:2181,zookeeper-02-sh:2181,zookeeper-03-sh:2181
+agent_back.sources.src_back-hoswifi-wechatAttentionAdd.topic = back-hoswifi-wechatAttentionAdd
+agent_back.sources.src_back-hoswifi-wechatAttentionAdd.batchSize = 1000
+agent_back.sources.src_back-hoswifi-wechatAttentionAdd.groupId = group_back-hoswifi-wechatAttentionAdd
+
+#define sink
+agent_back.sinks.sink_back-hoswifi-wechatAttentionAdd.type = org.apache.flume.sink.customhdfs.HDFSEventSink
+agent_back.sinks.sink_back-hoswifi-wechatAttentionAdd.hdfs.writeFormat = Text
+agent_back.sinks.sink_back-hoswifi-wechatAttentionAdd.hdfs.fileType = DataStream
+agent_back.sinks.sink_back-hoswifi-wechatAttentionAdd.hdfs.filePrefix =flume
+agent_back.sinks.sink_back-hoswifi-wechatAttentionAdd.hdfs.useLocalTimeStamp = true
+agent_back.sinks.sink_back-hoswifi-wechatAttentionAdd.hdfs.path = hdfs://master:8020/logs_origin/back/back-hoswifi-wechatAttentionAdd/%Y%m%d
+agent_back.sinks.sink_back-hoswifi-wechatAttentionAdd.hdfs.rollCount=0
+agent_back.sinks.sink_back-hoswifi-wechatAttentionAdd.hdfs.rollSize=512000000
+agent_back.sinks.sink_back-hoswifi-wechatAttentionAdd.hdfs.rollInterval=600
+agent_back.sinks.sink_back-hoswifi-wechatAttentionAdd.hdfs.batchSize=1000
+agent_back.sinks.sink_back-hoswifi-wechatAttentionAdd.hdfs.idleTimeout=10000
+agent_back.sinks.sink_back-hoswifi-wechatAttentionAdd.hdfs.callTimeout=10000
+agent_back.sinks.sink_back-hoswifi-wechatAttentionAdd.fieldsSeq=openId:string,appId:string,hosId:string,gwId:string,suppId:string,attentionTime:bigint,logTime:bigint,userAgent:string
+agent_back.sinks.sink_back-hoswifi-wechatAttentionAdd.format=json
+agent_back.sinks.sink_back-hoswifi-wechatAttentionAdd.impalaUrl=jdbc:hive2://slave1:21050/;auth=noSasl
+agent_back.sinks.sink_back-hoswifi-wechatAttentionAdd.partitionFormat=yyyyMMdd
+agent_back.sinks.sink_back-hoswifi-wechatAttentionAdd.refCtimeColumn=logTime
+agent_back.sinks.sink_back-hoswifi-wechatAttentionAdd.refCtimeColumnEnable=false
+agent_back.sinks.sink_back-hoswifi-wechatAttentionAdd.tableName=parquetdb.back_hoswifi_wechatAttentionAdd,txtdb.back_hoswifi_wechatAttentionAdd
+
+#define channel
+agent_back.channels.ch_back-hoswifi-wechatAttentionAdd.type = file
+agent_back.channels.ch_back-hoswifi-wechatAttentionAdd.checkpointDir = /data/tmp/flume/checkpoint_back-hoswifi-wechatAttentionAdd
+agent_back.channels.ch_back-hoswifi-wechatAttentionAdd.dataDirs = /data/tmp/flume/data_back-hoswifi-wechatAttentionAdd
+
+
+#define source and sink match channel
+agent_back.sources.src_back-hoswifi-wechatAttentionAdd.channels = ch_back-hoswifi-wechatAttentionAdd
+agent_back.sinks.sink_back-hoswifi-wechatAttentionAdd.channel = ch_back-hoswifi-wechatAttentionAdd
+
+#---------------back-portal-loginflowlog---------------
+#define source
+agent_back.sources.src_back-portal-loginflowlog.type = org.apache.flume.source.kafka.KafkaSource
+agent_back.sources.src_back-portal-loginflowlog.zookeeperConnect = zookeeper-01-sh:2181,zookeeper-02-sh:2181,zookeeper-03-sh:2181
+agent_back.sources.src_back-portal-loginflowlog.topic = back-portal-loginflowlog
+agent_back.sources.src_back-portal-loginflowlog.batchSize = 1000
+agent_back.sources.src_back-portal-loginflowlog.groupId = group_back-portal-loginflowlog
+
+#define sink
+agent_back.sinks.sink_back-portal-loginflowlog.type = org.apache.flume.sink.customhdfs.HDFSEventSink
+agent_back.sinks.sink_back-portal-loginflowlog.hdfs.writeFormat = Text
+agent_back.sinks.sink_back-portal-loginflowlog.hdfs.fileType = DataStream
+agent_back.sinks.sink_back-portal-loginflowlog.hdfs.filePrefix =flume
+agent_back.sinks.sink_back-portal-loginflowlog.hdfs.useLocalTimeStamp = true
+agent_back.sinks.sink_back-portal-loginflowlog.hdfs.path = hdfs://master:8020/logs_origin/back/back-portal-loginflowlog/%Y%m%d
+agent_back.sinks.sink_back-portal-loginflowlog.hdfs.rollCount=0
+agent_back.sinks.sink_back-portal-loginflowlog.hdfs.rollSize=512000000
+agent_back.sinks.sink_back-portal-loginflowlog.hdfs.rollInterval=600
+agent_back.sinks.sink_back-portal-loginflowlog.hdfs.batchSize=1000
+agent_back.sinks.sink_back-portal-loginflowlog.hdfs.idleTimeout=10000
+agent_back.sinks.sink_back-portal-loginflowlog.hdfs.callTimeout=10000
+agent_back.sinks.sink_back-portal-loginflowlog.fieldsSeq=logType:string,hosId:string,suppId:string,gwId:string,userMac:string,loginVersion:string,forwardVersion:string,arriveVersion:string,loginType:string,isNewUser:string,logTime:bigint
+agent_back.sinks.sink_back-portal-loginflowlog.format=json
+agent_back.sinks.sink_back-portal-loginflowlog.impalaUrl=jdbc:hive2://slave1:21050/;auth=noSasl
+agent_back.sinks.sink_back-portal-loginflowlog.partitionFormat=yyyyMMdd
+agent_back.sinks.sink_back-portal-loginflowlog.refCtimeColumn=logTime
+agent_back.sinks.sink_back-portal-loginflowlog.refCtimeColumnEnable=false
+agent_back.sinks.sink_back-portal-loginflowlog.tableName=parquetdb.back_portal_loginflowlog,txtdb.back_portal_loginflowlog
+
+#define channel
+agent_back.channels.ch_back-portal-loginflowlog.type = file
+agent_back.channels.ch_back-portal-loginflowlog.checkpointDir = /data/tmp/flume/checkpoint_back-portal-loginflowlog
+agent_back.channels.ch_back-portal-loginflowlog.dataDirs = /data/tmp/flume/data_back-portal-loginflowlog
+
+#define source and sink match channel
+agent_back.sources.src_back-portal-loginflowlog.channels = ch_back-portal-loginflowlog
+agent_back.sinks.sink_back-portal-loginflowlog.channel = ch_back-portal-loginflowlog
+
+
+#---------------back-portal-wechatlog---------------
+#define source
+agent_back.sources.src_back-portal-wechatlog.type = org.apache.flume.source.kafka.KafkaSource
+agent_back.sources.src_back-portal-wechatlog.zookeeperConnect = zookeeper-01-sh:2181,zookeeper-02-sh:2181,zookeeper-03-sh:2181
+agent_back.sources.src_back-portal-wechatlog.topic = back-portal-wechatlog
+agent_back.sources.src_back-portal-wechatlog.batchSize = 1000
+agent_back.sources.src_back-portal-wechatlog.groupId = group_back-portal-wechatlog
+
+#define sink
+agent_back.sinks.sink_back-portal-wechatlog.type = org.apache.flume.sink.customhdfs.HDFSEventSink
+agent_back.sinks.sink_back-portal-wechatlog.hdfs.writeFormat = Text
+agent_back.sinks.sink_back-portal-wechatlog.hdfs.fileType = DataStream
+agent_back.sinks.sink_back-portal-wechatlog.hdfs.filePrefix =flume
+agent_back.sinks.sink_back-portal-wechatlog.hdfs.useLocalTimeStamp = true
+agent_back.sinks.sink_back-portal-wechatlog.hdfs.path = hdfs://master:8020/logs_origin/back/back-portal-wechatlog/%Y%m%d
+agent_back.sinks.sink_back-portal-wechatlog.hdfs.rollCount=0
+agent_back.sinks.sink_back-portal-wechatlog.hdfs.rollSize=512000000
+agent_back.sinks.sink_back-portal-wechatlog.hdfs.rollInterval=600
+agent_back.sinks.sink_back-portal-wechatlog.hdfs.batchSize=1000
+agent_back.sinks.sink_back-portal-wechatlog.hdfs.idleTimeout=10000
+agent_back.sinks.sink_back-portal-wechatlog.hdfs.callTimeout=10000
+agent_back.sinks.sink_back-portal-wechatlog.fieldsSeq=gwId:string,hosId:string,suppId:string,userMac:string,type:string,logTime:bigint,authType:string
+agent_back.sinks.sink_back-portal-wechatlog.format=json
+agent_back.sinks.sink_back-portal-wechatlog.impalaUrl=jdbc:hive2://slave1:21050/;auth=noSasl
+agent_back.sinks.sink_back-portal-wechatlog.partitionFormat=yyyyMMdd
+agent_back.sinks.sink_back-portal-wechatlog.refCtimeColumn=logTime
+agent_back.sinks.sink_back-portal-wechatlog.refCtimeColumnEnable=false
+agent_back.sinks.sink_back-portal-wechatlog.tableName=parquetdb.back_portal_wechatflowlog,txtdb.back_portal_wechatflowlog
+
+#define channel
+agent_back.channels.ch_back-portal-wechatlog.type = file
+agent_back.channels.ch_back-portal-wechatlog.checkpointDir = /data/tmp/flume/checkpoint_back-portal-wechatlog
+agent_back.channels.ch_back-portal-wechatlog.dataDirs = /data/tmp/flume/data_back-portal-wechatlog
+
+#define source and sink match channel
+agent_back.sources.src_back-portal-wechatlog.channels = ch_back-portal-wechatlog
+agent_back.sinks.sink_back-portal-wechatlog.channel = ch_back-portal-wechatlog
