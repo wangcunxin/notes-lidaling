@@ -75,7 +75,7 @@ LOCATION '/impala/tbs/site/site-wxConcatFollowv3';
 
 
 DROP TABLE IF EXISTS parquetdb.site_sitePVv3;
-CREATE TABLE parquetdb.site_sitePVv3(
+CREATE external TABLE parquetdb.site_sitePVv3(
   site_id STRING,    site_uuid STRING,    site_uuid_ctime STRING,    ptitle STRING,    url STRING,    referrer STRING,    prevpid STRING,    attime SMALLINT,    resolution STRING,    ip STRING,    ctime STRING,    language STRING,    cookie_enabled STRING,    ua STRING,    uuid STRING,    uuid_ctime STRING,    browser STRING,    os STRING,    tag_key STRING,    supp_id STRING,    gw_id STRING,    portal_version STRING,    from_page STRING,    channel_id STRING,    channel_list_id STRING,    content_id STRING,    advid STRING,    appid STRING,    spenttime SMALLINT,    assingleaccess STRING,    asfirstaccess STRING,    aslastaccess STRING
 )
 partitioned by (dat string)
