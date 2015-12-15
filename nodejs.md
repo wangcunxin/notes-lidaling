@@ -94,3 +94,8 @@ NODE_ENV=production forever start -l ~/.forever/forever.log -e ~/.forever/err.lo
   https://github.com/shoreditch-ops/minigun
   https://github.com/jpillora/node-load-tester
   https://github.com/mithunsatheesh/node-stress
+
+### 开发框架
+
+- meteor
+- pomelo
