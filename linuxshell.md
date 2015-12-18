@@ -1,45 +1,45 @@
--- cut
+- cut
 
 	cat acinfo.csv | cut -d ',' -f 1|sort -u|wc -l
 
 
--- sed
+- sed
 
 	ref:http://coolshell.cn/articles/9104.html
 	sed -i 's/^/idfield,/' ulog_20150*.csv
 	sed -i 's/id'
 
--- netcat
+- netcat
 
 	netcat -u host port
 	# without -u ,netcat using tcp protocal
 
--- grep
+- grep
 
 	tail -f file | grep --line-buffered -C 3 my_pattern
 	grep -B 3 partern file
 	grep -A 3 partern file
 	grep -C 3 partern file
 
-deb
+- deb
 
-	uninstall open-jdk
+uninstall open-jdk
 
-		sudo apt-get purge openjdk-\*
+	sudo apt-get purge openjdk-\*
 
-	set defaut java
+set defaut java
 
 		update-alternatives --install /usr/bin/java java  /usr/local/common/j2sdk1.4.2_18/bin/java 300
 		update-alternatives --install /usr/bin/javac javac /usr/local/common/j2sdk1.4.2_18/bin/javac 300
 
-rpm
+- rpm
 
 
-locate
+- locate
 
 	find file by filename
 
--- httpie
+- httpie
 
 one human http tool like curl
 
@@ -49,16 +49,22 @@ set headers
 
 	http --verbose --ignore-stdin --json post http://192.168.0.95:30000/data datatype=hosWiFiLogWechatFlow time=2015-09-12 23:44:45 data:='["eyJnd0lkIjoiQiIsImhvc0lkIjoiYmJsaW5rLWhvc2lkIiwic3VwcElkIjoiMCIsInVzZXJNYWMiOiIwMDpGRjpDQzpBQTpFRSIsInR5cGUiOiIxLXRlc3QiLCJsb2dUaW1lIjoxNDQ4NTAwNjgyMDAwLCJhdXRoVHlwZSI6IiJ9"]' from=portal Content-Type:application/vnd.bblink.remote-access.v1+json
 
--- network
+- network
 
-	nc
+nc
 
 	# receiver
 	nc -l -p 5555 -q 2 >/tmp/test.csv
 	# sender
 	nc ip port < file
 
+other commands:
 
+	tcpdump
+	wireshark
 
-tcpdump
-wireshark
+- user
+
+execute commands as a different user
+
+	su - $user -c '$commands'

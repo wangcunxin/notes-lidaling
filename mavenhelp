@@ -1,1 +1,5 @@
-mvn archetype:generate -DgroupId=cn.lidl -DartifactId=impalasink -DarchetypeArtifactId=maven-archetype-quickstart
+- create project
+
+  mvn archetype:generate -DgroupId=cn.lidl -DartifactId=impalasink -DarchetypeArtifactId=maven-archetype-quickstart
+
+- mvn local install 

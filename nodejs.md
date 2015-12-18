@@ -94,3 +94,17 @@ NODE_ENV=production forever start -l ~/.forever/forever.log -e ~/.forever/err.lo
   https://github.com/shoreditch-ops/minigun
   https://github.com/jpillora/node-load-tester
   https://github.com/mithunsatheesh/node-stress
+
+### node debug tools
+
+auto restart server when nodejs file changed
+
+- supervisor
+
+    sudo npm install -g --verbose supervisor
+    supervisor app.js
+
+- nodemon
+
+    sudo npm install -g --verbose nodemon
+    nodemon app.js
