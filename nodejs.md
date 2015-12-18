@@ -108,3 +108,7 @@ auto restart server when nodejs file changed
 
     sudo npm install -g --verbose nodemon
     nodemon app.js
+### 开发框架
+
+- meteor
+- pomelo
