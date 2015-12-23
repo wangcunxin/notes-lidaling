@@ -120,7 +120,6 @@
             popen: function (url) {
                 window.parent.location.href = url;
             },
-            encode:Encoder
         };
     },
     function(tools) {
