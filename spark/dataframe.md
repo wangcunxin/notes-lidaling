@@ -59,6 +59,7 @@ spark_df = context.createDataFrame(pandas_df)
 
 [link](https://spark.apache.org/docs/1.5.2/api/python/pyspark.sql.html)
 [doc](https://spark.apache.org/docs/1.5.2/api/python/index.html)
+https://spark.apache.org/docs/1.4.1/api/python/pyspark.sql.html?highlight=dataframe#pyspark.sql.DataFrame
 
   d = [{'name': 'Alice', 'age': 1}]
   sqlContext.createDataFrame(d).collect()

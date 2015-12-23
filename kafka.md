@@ -30,3 +30,11 @@ then issue command :
     kafka-topics.sh --zookeeper localhost:2181 --list
     kafka-console-producer.sh --broker-list cdh-slave2:9092 --topic back-wechatNewFanDetails
     kafka-console-consumer.sh --zookeeper cdh-slave1:2181 --topic back-wechatNewFanDetails
+
+- one way to connect zk
+
+  zookeeper-shell.sh cdh-slave1:2181
+
+- get brokers info from zookeeper
+
+  http://stackoverflow.com/questions/29490113/kafka-get-broker-host-from-zookeeper

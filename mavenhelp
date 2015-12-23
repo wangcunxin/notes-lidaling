@@ -2,4 +2,6 @@
 
   mvn archetype:generate -DgroupId=cn.lidl -DartifactId=impalasink -DarchetypeArtifactId=maven-archetype-quickstart
 
-- mvn local install 
+- mvn local install
+
+  mvn install:install-file -Dfile=./zookeeper-spring-1.0.0-SNAPSHOT.jar -DgroupId=com.ryantenney.zookeeper -DartifactId=zookeeper-spring -Dversion=1.0.0-SNAPSHOT -Dpackage=jar
