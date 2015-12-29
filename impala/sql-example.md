@@ -15,3 +15,7 @@
 ### timestampe in bigint format
 
   select from_unixtime(cast(createtime/1000 +3600*8 as int),'yyyy-MM-dd') from site_adloadv1 where hosid='132' and dat='20151220';
+
+### add columns
+
+  alter table tb_external add columns(testc string,testc2 bigint)
