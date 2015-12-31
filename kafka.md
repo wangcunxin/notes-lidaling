@@ -5,6 +5,7 @@ http://kafka.apache.org/081/quickstart.html
 kafka-topics.sh --zookeeper cloud1:2181 --list
 ### view message under topicname
 kafka-console-consumer.sh --zookeeper cloud1:2181 --topic topicName
+kafka-console-consumer.sh --zookeeper localhost:2581 --topic back-portal-loginflowlog --from-beginning
 ### produce mess with topicname
 kafka-console-producer.sh --broker-list cloud1:9092 --topic topicName
 ### create topic

@@ -77,3 +77,5 @@ execute commands as a different user
 	du -ch
 	# in order
 	du -ch |sort -hr
+	# in order limit depth
+	du --max-depth=1 -ch|sort -hr
