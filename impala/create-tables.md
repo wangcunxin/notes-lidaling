@@ -379,6 +379,25 @@ partitioned by (dat string)
 row format delimited fields terminated by '\t'
 location '/impala/txt/back/back-hoswifi-wechatAttention'
 
+### acdeviceinfo
+
+drop table if exists parquetdb.wifi_acdeviceinfo;
+create external table parquetdb.wifi_acdeviceinfo(
+  dfrom string,gwid string,hosId string,wanip string,state string,apcount int,aponline int,apoffline int,useronline int,userdetect int,cpuuse string,memuse string,acruntimelong bigint,heartbeattime int,upflow bigint,downflow bigint,upspeed bigint ,downspeed bigint,totalband bigint,banduse string,createtime bigint
+)
+partitioned by (dat string)
+stored as parquet
+location '/impala/parquet/wifi/wifi-acdeviceinfo'
+
+drop table if exists txtdb.wifi_acdeviceinfo;
+create external table txtdb.wifi_acdeviceinfo(
+  dfrom string,gwid string,hosId string,wanip string,state string,apcount int,aponline int,apoffline int,useronline int,userdetect int,cpuuse string,memuse string,acruntimelong bigint,heartbeattime int,upflow bigint,downflow bigint,upspeed bigint ,downspeed bigint,totalband bigint,banduse string,createtime bigint
+)
+partitioned by (dat string)
+row format delimited fields terminated by '\t'
+location '/impala/txt/wifi/wifi-acdeviceinfo'
+
+insert overwrite parquetdb.wifi_acdeviceinfo partition(dat='20151228') select dfrom,gwid,hosId,wanip,state,apcount,aponline,apoffline,useronline,userdetect,cpuuse,memuse,acruntimelong,heartbeattime,upflow,downflow,upspeed,downspeed,totalband,banduse,createtime from txtdb.wifi_acdeviceinfo where dat='20151228'
 ### model [template]
 
 drop table if exists parquetdb.back_portal_loginflowlog;
@@ -397,6 +416,7 @@ partitioned by (dat string)
 row format delimited fields terminated by '\t'
 location '/impala/txt/back/back-portal-loginflowlog'
 
+
 ### add partition
 
   alter table wxConcatFollowMACv3 add partition(dat ='20151016');
@@ -405,4 +425,10 @@ location '/impala/txt/back/back-portal-loginflowlog'
 
 ### load data into table
 
+- txt
+
   load data inpath '/logs_origin/back/back-wechatNewFanDetails/20151016' into table wechatNewFanDetails partition(dat = '20151016');
+
+- parquet
+
+  insert overwrite $table partition(dat='') select fields from $table where dat=''

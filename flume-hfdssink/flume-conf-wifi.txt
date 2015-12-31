@@ -1,15 +1,15 @@
 
-#wifi-apinfo wifi-useronlineinfo wifi-usernetlog wifi-userapplog wifi-userdetectedinfo
+#wifi-apinfo wifi-useronlineinfo wifi-usernetlog wifi-userapplog wifi-userdetectedinfo wifi-acdeviceinfo
 
 #define agent_wifi
-agent_wifi.sources  = src_wifi-apinfo src_wifi-useronlineinfo src_wifi-usernetlog src_wifi-userapplog src_wifi-userdetectedinfo
-agent_wifi.channels = ch_wifi-apinfo ch_wifi-useronlineinfo ch_wifi-usernetlog ch_wifi-userapplog ch_wifi-userdetectedinfo
-agent_wifi.sinks    = sink_wifi-apinfo sink_wifi-useronlineinfo sink_wifi-usernetlog sink_wifi-userapplog sink_wifi-userdetectedinfo
+agent_wifi.sources  = src_wifi-apinfo src_wifi-useronlineinfo src_wifi-usernetlog src_wifi-userapplog src_wifi-userdetectedinfo src_wifi-acdeviceinfo
+agent_wifi.channels = ch_wifi-apinfo ch_wifi-useronlineinfo ch_wifi-usernetlog ch_wifi-userapplog ch_wifi-userdetectedinfo ch_wifi-acdeviceinfo
+agent_wifi.sinks    = sink_wifi-apinfo sink_wifi-useronlineinfo sink_wifi-usernetlog sink_wifi-userapplog sink_wifi-userdetectedinfo sink_wifi-acdeviceinfo
 
 #---------------wifi-apinfo---------------1
 #define source
 agent_wifi.sources.src_wifi-apinfo.type = org.apache.flume.source.kafka.KafkaSource
-agent_wifi.sources.src_wifi-apinfo.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_wifi.sources.src_wifi-apinfo.zookeeperConnect = zookeeper-01-sh:2181,zookeeper-02-sh:2181,zookeeper-03-sh:2181
 agent_wifi.sources.src_wifi-apinfo.topic = wifi-apinfo
 agent_wifi.sources.src_wifi-apinfo.batchSize = 1000
 agent_wifi.sources.src_wifi-apinfo.groupId = group_wifi-apinfo
@@ -42,7 +42,7 @@ agent_wifi.sinks.sink_wifi-apinfo.channel = ch_wifi-apinfo
 #---------------wifi-useronlineinfo---------------2
 #define source
 agent_wifi.sources.src_wifi-useronlineinfo.type = org.apache.flume.source.kafka.KafkaSource
-agent_wifi.sources.src_wifi-useronlineinfo.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_wifi.sources.src_wifi-useronlineinfo.zookeeperConnect = zookeeper-01-sh:2181,zookeeper-02-sh:2181,zookeeper-03-sh:2181
 agent_wifi.sources.src_wifi-useronlineinfo.topic = wifi-useronlineinfo
 agent_wifi.sources.src_wifi-useronlineinfo.batchSize = 1000
 agent_wifi.sources.src_wifi-useronlineinfo.groupId = group_wifi-useronlineinfo
@@ -74,7 +74,7 @@ agent_wifi.sinks.sink_wifi-useronlineinfo.channel = ch_wifi-useronlineinfo
 #---------------wifi-usernetlog---------------3
 #define source
 agent_wifi.sources.src_wifi-usernetlog.type = org.apache.flume.source.kafka.KafkaSource
-agent_wifi.sources.src_wifi-usernetlog.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_wifi.sources.src_wifi-usernetlog.zookeeperConnect = zookeeper-01-sh:2181,zookeeper-02-sh:2181,zookeeper-03-sh:2181
 agent_wifi.sources.src_wifi-usernetlog.topic = wifi-usernetlog
 agent_wifi.sources.src_wifi-usernetlog.batchSize = 1000
 agent_wifi.sources.src_wifi-usernetlog.groupId = group_wifi-usernetlog
@@ -106,7 +106,7 @@ agent_wifi.sinks.sink_wifi-usernetlog.channel = ch_wifi-usernetlog
 #---------------wifi-userapplog---------------4
 #define source
 agent_wifi.sources.src_wifi-userapplog.type = org.apache.flume.source.kafka.KafkaSource
-agent_wifi.sources.src_wifi-userapplog.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_wifi.sources.src_wifi-userapplog.zookeeperConnect = zookeeper-01-sh:2181,zookeeper-02-sh:2181,zookeeper-03-sh:2181
 agent_wifi.sources.src_wifi-userapplog.topic = wifi-userapplog
 agent_wifi.sources.src_wifi-userapplog.batchSize = 1000
 agent_wifi.sources.src_wifi-userapplog.groupId = group_wifi-userapplog
@@ -139,7 +139,7 @@ agent_wifi.sinks.sink_wifi-userapplog.channel = ch_wifi-userapplog
 #---------------wifi-userdetectedinfo---------------5
 #define source
 agent_wifi.sources.src_wifi-userdetectedinfo.type = org.apache.flume.source.kafka.KafkaSource
-agent_wifi.sources.src_wifi-userdetectedinfo.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_wifi.sources.src_wifi-userdetectedinfo.zookeeperConnect = zookeeper-01-sh:2181,zookeeper-02-sh:2181,zookeeper-03-sh:2181
 agent_wifi.sources.src_wifi-userdetectedinfo.topic = wifi-userdetectedinfo
 agent_wifi.sources.src_wifi-userdetectedinfo.batchSize = 1000
 agent_wifi.sources.src_wifi-userdetectedinfo.groupId = group_wifi-userdetectedinfo
@@ -168,3 +168,42 @@ agent_wifi.channels.ch_wifi-userdetectedinfo.dataDirs = /data/tmp/flume/data_wif
 agent_wifi.sources.src_wifi-userdetectedinfo.channels = ch_wifi-userdetectedinfo
 agent_wifi.sinks.sink_wifi-userdetectedinfo.channel = ch_wifi-userdetectedinfo
 
+
+#---------------wifi-acdeviceinfo---------------6
+#define source
+agent_wifi.sources.src_wifi-acdeviceinfo.type = org.apache.flume.source.kafka.KafkaSource
+agent_wifi.sources.src_wifi-acdeviceinfo.zookeeperConnect = zookeeper-01-sh:2181,zookeeper-02-sh:2181,zookeeper-03-sh:2181
+agent_wifi.sources.src_wifi-acdeviceinfo.topic = wifi-acdeviceinfo
+agent_wifi.sources.src_wifi-acdeviceinfo.batchSize = 1000
+agent_wifi.sources.src_wifi-acdeviceinfo.groupId = group_wifi-acdeviceinfo
+
+#define sink
+agent_wifi.sinks.sink_wifi-acdeviceinfo.type =  org.apache.flume.sink.customhdfs.HDFSEventSink
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.writeFormat = Text
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.fileType = DataStream
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.filePrefix =flume
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.useLocalTimeStamp = true
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.path = hdfs://master:8020/logs_origin/wifi/wifi-acdeviceinfo/%Y%m%d
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.rollCount=0
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.rollSize=512000000
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.rollInterval=600
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.batchSize=1000
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.idleTimeout=10000
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.callTimeout=10000
+
+agent_wifi.sinks.sink_wifi-acdeviceinfo.partitionFormat=yyyyMMdd
+agent_wifi.sinks.sink_wifi-acdeviceinfo.refCtimeColumn=createtime
+agent_wifi.sinks.sink_wifi-acdeviceinfo.refCtimeColumnEnable=false
+agent_wifi.sinks.sink_wifi-acdeviceinfo.tableName=parquetdb.wifi_acdeviceinfo,txtdb.wifi_acdeviceinfo
+agent_wifi.sinks.sink_wifi-acdeviceinfo.impalaUrl=jdbc:hive2://slave1:21050/;auth=noSasl
+
+
+#define channel
+agent_wifi.channels.ch_wifi-acdeviceinfo.type = file
+agent_wifi.channels.ch_wifi-acdeviceinfo.checkpointDir = /data/tmp/flume/checkpoint_wifi-acdeviceinfo
+agent_wifi.channels.ch_wifi-acdeviceinfo.dataDirs = /data/tmp/flume/data_wifi-acdeviceinfo
+
+
+#define source and sink match channel
+agent_wifi.sources.src_wifi-acdeviceinfo.channels = ch_wifi-acdeviceinfo
+agent_wifi.sinks.sink_wifi-acdeviceinfo.channel = ch_wifi-acdeviceinfo

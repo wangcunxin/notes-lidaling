@@ -28,3 +28,7 @@ create user and groupname same as username ,and without home dir ,password:
 delete user:
 
 	sudo userdel -r impala
+
+### check hdfs dir size
+
+	hdfs dfs -du [-s] [-h] URI [URI …]

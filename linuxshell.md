@@ -68,3 +68,14 @@ other commands:
 execute commands as a different user
 
 	su - $user -c '$commands'
+
+### check dir size
+
+	# view total size
+	du -sh
+	# view every dir size
+	du -ch
+	# in order
+	du -ch |sort -hr
+	# in order limit depth
+	du --max-depth=1 -ch|sort -hr

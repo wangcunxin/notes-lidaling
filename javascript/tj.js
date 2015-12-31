@@ -6,11 +6,14 @@
         g.BBLINK_WEB_TJ = fn2(g.IDTOOLS);
     }
 })(window, function() {
-        var sites = [{ domain: 'hoswifi.bblink.cn', path: '/',siteID:'1' },
-        { domain: 'hoswifi.bblink.cn', path: '/v2',siteID:'1' },
-        { domain: 'hoswifi.bblink.cn', path: '/v3',siteID:'1' },
-        { domain: 'yabibuy.com', path: '/',siteID:'2' },
-        { domain: 'localhost', path: '/',siteID:'-1' }];
+        var sites = [
+          { domain: 'hoswifi.bblink.cn', path: '/',siteID:'1' },
+          { domain: 'hoswifi.bblink.cn', path: '/v2',siteID:'1' },
+          { domain: 'hoswifi.bblink.cn', path: '/v3',siteID:'1' },
+          { domain: 'yabibuy.com', path: '/',siteID:'2' },
+          { domain: 'dac.bblink.cn', path: '/',siteID:'3' },
+          { domain: 'localhost', path: '/',siteID:'-1' }
+        ];
 
         function generateUUID() {
             var d = new Date().getTime();
@@ -22,7 +25,6 @@
             return uuid;
         };
         var makeids=[generateUUID(),generateUUID(),generateUUID(),generateUUID(),generateUUID()];
-        console.log(makeids);
         var UUID = 'bbkuid6';
         var UUIDCTIME = 'bbkuidctime6';
 
