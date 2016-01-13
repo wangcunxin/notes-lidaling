@@ -79,3 +79,8 @@ execute commands as a different user
 	du -ch |sort -hr
 	# in order limit depth
 	du --max-depth=1 -ch|sort -hr
+
+### termianl power tools
+
+- oh my zsh
+- oh my fish

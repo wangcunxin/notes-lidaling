@@ -39,3 +39,7 @@ then issue command :
 - get brokers info from zookeeper
 
   http://stackoverflow.com/questions/29490113/kafka-get-broker-host-from-zookeeper
+
+### note
+
+kafka partition 数量和 consumer 数量 是多对一或 一对一 ，如果 partition数量 少于 consumer数量 ，则其中多余的consumer将无数据可消费
