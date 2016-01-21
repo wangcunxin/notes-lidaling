@@ -84,3 +84,9 @@ execute commands as a different user
 
 - oh my zsh
 - oh my fish
+
+## shell script
+
+- readcsv with index increment
+
+	cat log_user.csv |while read a; do vara=$((vara+1)); echo "$a:$vara"; done

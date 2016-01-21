@@ -1,11 +1,16 @@
 ### install
 
-node js install guide: https://github.com/nodejs/node-v0.x-archive/wiki/Installing-Node.js-via-package-manager?utm_source=%5Bdeliciuos%5D&utm_medium=twitter#enterprise-linux-and-fedora
+node js install guide:
+
+  https://github.com/nodejs/node-v0.x-archive/wiki/Installing-Node.js-via-package-manager?utm_source=%5Bdeliciuos%5D&utm_medium=twitter#enterprise-linux-and-fedora
 
 解压 安装 法
+
+```
 #export NODE_HOME=/opt/node-v0.12.7
 #export PATH=${NODE_HOME}/bin:$PATH
 #export NODE_PATH=${NODE_HOME}/lib/node_modules
+```
 
 ### npm install
 
@@ -24,7 +29,7 @@ node js install guide: https://github.com/nodejs/node-v0.x-archive/wiki/Installi
   then
   var moduleDefinedName= require('./module.js');
 
-### forever  
+### forever
 - install
 
   npm install forever -g
@@ -108,7 +113,27 @@ auto restart server when nodejs file changed
 
     sudo npm install -g --verbose nodemon
     nodemon app.js
+
 ### 开发框架
 
 - meteor
 - pomelo
+
+### 协程/纤程/异步转同步
+
+- fibers
+
+```
+function doIt2(key) {
+    var fiber = Fiber.current;
+    client.send_command("PEXPIRE", [key, 1000 * 60 * 60], function(err, reply){
+        console.log(err);
+        console.log(reply);
+        fiber.run();
+    });
+    Fiber.yield();
+}
+```
+
+首先var fiber = Fiber.current;用于获取当前的执行域，然后挂起回调，接着是：Fiber.yield();，这句话的作用可以理解为阻塞当前的执行域，并释放cpu，这样就为刚刚挂起的回调提供了cpu了，当回调执行完后fiber.run();用于使yield返回
+

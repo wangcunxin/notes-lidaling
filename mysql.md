@@ -60,6 +60,10 @@ Database /path/to/csvfile/TableName.csv
 	UNIX_TIMESTAMP('2015-01-15 12:00:00');
 	FROM_UNIXTIME(timestamp)
 
-## UNIQUE key add 
+## UNIQUE key add
 
 	ALTER TABLE example ADD UNIQUE KEY abc_ndx (a,b,c);
+
+## query table name using like
+
+	select table_name from information_schema.tables where table_name like 'log_user%';
