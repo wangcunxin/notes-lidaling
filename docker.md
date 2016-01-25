@@ -34,7 +34,7 @@
 
 - 提交你的变更，并且把容器保存成镜像，命名为 mynewimage.3a09b2588478为容器的ID.
 
-	docker commit 3a09b2588478 mynewimage   
+	docker commit 3a09b2588478 mynewimage
 
 - 把 mynewimage 镜像保存成 tar 文件
 
@@ -42,7 +42,7 @@
 
 - 加载 mynewimage 镜像
 
-	bzip2 -d -c < /home/save.tar.bz2 | docker load  
+	bzip2 -d -c < /home/save.tar.bz2 | docker load
 
 - 删除所有容器
 
@@ -54,7 +54,7 @@
 
 - 帮助
 
-	docker run --help   
+	docker run --help
 
 - 导出Image
 
@@ -136,3 +136,23 @@ Error response from daemon: Cannot start container graphite: iptables failed: ip
 ```
 
 just do : service docker restart
+
+### docker file
+
+```
+FROM ubuntu
+RUN apt-get update
+RUN apt-get install -y openssh-server
+RUN mkdir /var/run/sshd
+RUN echo "root:root" | chpasswd
+EXPOSE 22
+```
+
+- specify account ,password
+
+  RUN echo "root:root" | chpasswd
+
+- export port
+
+  EXPOSE 22
+

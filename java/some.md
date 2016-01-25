@@ -18,3 +18,21 @@
 ### security
 
   http://shiro.apache.org/
+
+### like dubbo framework
+
+- coral  by amazon
+- hsf taobao
+- ... netflix
+
+### dropwizard to deb or rpm
+
+https://groups.google.com/forum/#!topic/dropwizard-user/uFCgyipl7GQ
+
+after rpm or deb installation , app can be registered as linux daemon
+
+### workflow
+
+- Activiti
+- jbpm
+
