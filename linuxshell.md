@@ -90,3 +90,9 @@ execute commands as a different user
 - readcsv with index increment
 
 	cat log_user.csv |while read a; do vara=$((vara+1)); echo "$a:$vara"; done
+
+## alow nopassword sudo
+
+运行 'sudo visudo' 并添加
+
+  your-username ALL=NOPASSWD: /sbin/poweroff

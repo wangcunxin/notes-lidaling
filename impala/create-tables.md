@@ -301,6 +301,45 @@ LOCATION '/impala/parquet/site/site-pageflowv1';
 CREATE VIEW IF NOT EXISTS simpledata.site-pageflowv1
  AS select * from parquetdb.site_pageflowv1 union select * from  txtdb.site_pageflowv1
 
+
+### pageflowv2
+
+create EXTERNAL table txtdb.site_pageflowv2(
+  pageid string,
+  guuid string,
+  guuidCTime string,
+  flowid string,
+  name string,
+  url string,
+  hosid string,
+  gwid string,
+  mac string,
+  ua string,
+  ip string,
+  createTime bigint
+  )
+  partitioned by (dat STRING)
+  ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+  LOCATION '/impala/txt/site/site-pageflowv2';
+
+  create EXTERNAL table parquetdb.site_pageflowv2(
+    pageid string,
+    guuid string,
+    guuidCTime string,
+    flowid string,
+    name string,
+    url string,
+    hosid string,
+    gwid string,
+    mac string,
+    ua string,
+    ip string,
+    createTime bigint
+    )
+partitioned by (dat STRING)
+stored as parquet
+LOCATION '/impala/parquet/site/site-pageflowv2';
+
 ### back_portal_loginflowlog
 
 
