@@ -4,6 +4,10 @@ node js install guide:
 
   https://github.com/nodejs/node-v0.x-archive/wiki/Installing-Node.js-via-package-manager?utm_source=%5Bdeliciuos%5D&utm_medium=twitter#enterprise-linux-and-fedora
 
+  https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
+
+
+
 解压 安装 法
 
 ```
@@ -11,6 +15,8 @@ node js install guide:
 #export PATH=${NODE_HOME}/bin:$PATH
 #export NODE_PATH=${NODE_HOME}/lib/node_modules
 ```
+
+ref : http://stackoverflow.com/questions/23082242/how-to-install-nodejs-0-10-26-from-binaries-in-ubuntu
 
 ### npm install
 
