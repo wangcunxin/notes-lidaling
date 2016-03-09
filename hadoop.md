@@ -11,6 +11,11 @@
 	hdfs dsfadmin -refreshNodes
 	hdfs dfsadmin -safemode get
 
+- check hdfs avaliable size
+
+	su hdfs -c 'hdfs dfs -df -h'
+	su hdfs -c 'hdfs dfsadmin -report'
+
 ### add datanode
 需要 将hadoop 目录 拷贝至目录主机，然后 把 dfs/name/current/VERSION 里的namespaceId行内容 拷贝至目录主机相同文件中
 
