@@ -14,7 +14,7 @@ cdh5 tarball
 
 rmp download page:
 
-	http://archive-primary.cloudera.com/cm5/redhat/6/x86_64/cm/5/RPMS/x86_64/
+	http://archive-primary.cloudera.com/cm5/redhat/6/x86_64/cm/5/RPMS/x86_64/ # select stable version
 	http://archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/noarch/
 	http://archive-primary.cloudera.com/cdh5/redhat/6/x86_64/cdh/5.4.3/RPMS/x86_64/
 
@@ -134,7 +134,7 @@ pid-file=/var/run/mysqld/mysqld.pid
 
 ### centos repo conf
 
-cdh5.repo配置
+cdh5.repo配置 local /etc/yum.list/
 
 ```
 [cdh5]
@@ -217,6 +217,16 @@ sudo mv /usr/bin/host /usr/bin/host.bak
 不明白cloudera的初衷，这里已经得到 Cloudera Manager Server的ip了，却还要把ip解析成主机名来连接
 由于DNS反向解析没有配置好，根据Cloudera Manager Server 的ip解析主机名却得到了localhost，造成之后的连接错误
 这里的解决方案是直接把/usr/bin/host删掉，这样Cloudera Manager就会直接使用 ip进行连接，就没有错了
+
+
+### 本地Yum文件 创建
+
+	cd /var/http/pub
+	yum install createrepo
+	createrepo .
+	在nginx 中设置 此目录 可web读取
+	
+
 
 ###cdh monitor connect refuse
 

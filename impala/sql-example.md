@@ -19,3 +19,12 @@
 ### add columns
 
   alter table tb_external add columns(testc string,testc2 bigint)
+
+### other
+
+  select from_unixtime(cast((a.login_time/1000+8*3600) as BIGINT),"yyyy-MM"),count(distinct a.mac)   from back_portal_loginlog a
+  where a.dat='20150731'
+  and a.mac not in (select distinct mac from back_portal_loginlog where dat='20150731' and from_unixtime(cast((login_time/1000+8*3600) as BIGINT),"yyyy-MM")<'2015-07')
+  and from_unixtime(cast((a.login_time/1000+8*3600) as BIGINT),"yyyy-MM")='2015-07'
+
+  group by from_unixtime(cast((a.login_time/1000+8*3600) as BIGINT),"yyyy-MM")

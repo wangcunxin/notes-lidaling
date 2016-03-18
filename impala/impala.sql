@@ -1,4 +1,4 @@
-# grep by gwid ,weekday 
+# grep by gwid ,weekday
 
 select b.hosid,dayofweek(from_unixtime(cast((a.login_time/1000+8*3600) as BIGINT),"yyyy-MM-dd"))-1 as week,cast(count(distinct a.mac)/5 as int) as uv
  from back_portal_loginlog a,db_impala.gwhos b
