@@ -36,3 +36,6 @@ after rpm or deb installation , app can be registered as linux daemon
 - Activiti
 - jbpm
 
+### like zookeeper
+
+  CONSUL

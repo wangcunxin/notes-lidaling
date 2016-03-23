@@ -96,3 +96,8 @@ execute commands as a different user
 运行 'sudo visudo' 并添加
 
   your-username ALL=NOPASSWD: /sbin/poweroff
+
+
+## daemon grant to user
+
+	sudo usermod -aG docker lidl
