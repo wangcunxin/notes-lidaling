@@ -101,3 +101,15 @@ execute commands as a different user
 ## daemon grant to user
 
 	sudo usermod -aG docker lidl
+
+## linux ssh
+
+	ssh -v username@host
+
+	```
+	linux服务器上在/etc/ssh目录下存在两个配置文件一个是ssh_config，一个是sshd_config。区别就在于d上，带d的是ssh服务使用的配置文件，不带的是ssh客户端程序使用的
+	```
+
+	验证的时候启用的GSSAPIAuthentication验证方式,如果验证失败或其他原因异常，则会导致整个ssh 连接变慢
+
+	
