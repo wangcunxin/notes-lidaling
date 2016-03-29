@@ -1,0 +1,7 @@
+## using proxy
+
+  vim ~/.curlrc
+
+add
+
+  socks5="localhost:1080"

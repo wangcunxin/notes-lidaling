@@ -16,7 +16,7 @@ node js install guide:
 #export NODE_PATH=${NODE_HOME}/lib/node_modules
 ```
 
-ref : http://stackoverflow.com/questions/23082242/how-to-install-nodejs-0-10-26-from-binaries-in-ubuntu
+  ref : http://stackoverflow.com/questions/23082242/how-to-install-nodejs-0-10-26-from-binaries-in-ubuntu
 
 ### npm install
 
@@ -142,4 +142,3 @@ function doIt2(key) {
 ```
 
 首先var fiber = Fiber.current;用于获取当前的执行域，然后挂起回调，接着是：Fiber.yield();，这句话的作用可以理解为阻塞当前的执行域，并释放cpu，这样就为刚刚挂起的回调提供了cpu了，当回调执行完后fiber.run();用于使yield返回
-

@@ -112,4 +112,9 @@ execute commands as a different user
 
 	验证的时候启用的GSSAPIAuthentication验证方式,如果验证失败或其他原因异常，则会导致整个ssh 连接变慢
 
-	
+
+## watch
+
+watch files dir specify
+
+	watch -n 1 'ls -al'
