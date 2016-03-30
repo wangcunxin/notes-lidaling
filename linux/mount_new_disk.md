@@ -1,3 +1,5 @@
+ref: http://yingchao.iteye.com/blog/628097
+
 ## check new disk
 
   fdisk -l

@@ -1,7 +1,26 @@
-## using proxy
+## install
+
+ref :https://github.com/Linuxbrew/linuxbrew
+
+  sudo apt-get install build-essential curl git python-setuptools ruby
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/linuxbrew/go/install)"
+
+Add to your .bashrc or .zshrc:
+
+  export PATH="$HOME/.linuxbrew/bin:$PATH"
+  export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
+  export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
+
+## using proxy when dest site not connect,select one way below
+
+- linuxbrew use curl download files,so add proxy config in .curlrc
 
   vim ~/.curlrc
 
 add
 
   socks5="localhost:1080"
+
+- using in command line like
+
+  ALL_PROXY=socks5://127.0.0.1:1080 brew install nodejs
