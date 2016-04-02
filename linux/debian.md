@@ -33,3 +33,9 @@ deb-src http://ftp.us.debian.org/debian/ wheezy-updates main contrib non-free
 add `main contrib non-freemain contrib non-free` after each line
 
 [xmodlo](http://ask.xmodulo.com/install-nonfree-packages-debian.html)
+
+## other tools
+
+- gvim
+
+	sudo apt-get install vim-gnome

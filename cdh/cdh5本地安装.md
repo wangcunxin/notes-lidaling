@@ -1,58 +1,106 @@
 ## tar包下载 地址
 
-	http://archive.cloudera.com/cdh5/repo-as-tarball/ rpm包下载
+- cm 包下载
 
+http://archive-primary.cloudera.com/cm5/redhat/6/x86_64/cm/5/RPMS/x86_64/ cm rpm包下载
+
+	wget -r -np -nH -A rpm -R index.html -P /var/http/pub http://archive-primary.cloudera.com/cm5/redhat/6/x86_64/cm/5/RPMS/x86_64/
+
+- parcel包下载·「如果服务器网络很好，不建议下载，通过cm 下载即可」
 	http://archive.cloudera.com/cdh5/parcels/latest/  parcel包下载
-	http://archive-primary.cloudera.com/cm5/redhat/6/x86_64/cm/5/RPMS/x86_64/ cm rpm包下载 
 
-## 本地仓库创建 
-
-准备一台主机,性能一般即可
+## prehandle
 
 	yum install epel-release
-	yum install nginx
 	yum install createrepo
-	
+
+## 本地仓库创建 （准备一台主机,性能一般即可）
+
+	cd /var/http/pub
+	createrepo .
+
+##  disable SELINUX
+
 	vim /etc/selinux/config
 	set SELINUX=disabled
 
+## disable iptables
+
 	chkconfig iptables off
+
+## nginx
+
+	yum install nginx
 	vim /etc/nginx/conf.d/default.conf
 
+```
 	root /var/http/pub;
 	autoindex 	on;
-	
+```
+
+	service nginx restart
+
+## mysql
+```
+create database amon DEFAULT CHARACTER SET utf8;
+create database rman DEFAULT CHARACTER SET utf8;
+create database metastore DEFAULT CHARACTER SET utf8;
+create database sentry DEFAULT CHARACTER SET utf8;
+create database nav DEFAULT CHARACTER SET utf8;
+create database navms DEFAULT CHARACTER SET utf8;
+create database ooziedata DEFAULT CHARACTER SET utf8;
+create database monitordata DEFAULT CHARACTER SET utf8;
+
+grant all on amon.* TO 'root'@'master' IDENTIFIED BY 'root123';
+grant all on rman.* TO 'root'@'master' IDENTIFIED BY 'root123';
+grant all on metastore.* TO 'root'@'master' IDENTIFIED BY 'root123';
+grant all on sentry.* TO 'root'@'master' IDENTIFIED BY 'root123';
+grant all on nav.* TO 'root'@'master' IDENTIFIED BY 'root123';
+grant all on navms.* TO 'root'@'master' IDENTIFIED BY 'root123';
+grant all on ooziedata.* TO 'root'@'master' IDENTIFIED BY 'root123';
+grant all on monitordata.* TO 'root'@'master' IDENTIFIED BY 'root123';
+```
+## ntpd
+
+- auto on
+
 	chkconfig ntpd on
+
+- config
+
 	vim /etc/ntp.conf
 	set server 3.cn.pool.ntp.org
 
+## mysql安装
 
+	yum install mysql-server
 
-## mysql安装 
+## jdk installation
 
-## cm安装 
+- jdk
 
-##　cdh安装　
+	yum search oracle
+	yum install oracle-j2sdk1.7.x86_64
 
-## 遇到的问题
+- install mysql connector
 
-## hue 
-http://stackoverflow.com/questions/30571124/cdh-5-4-upgrade-to-hue-to-3-8
-http://www.cloudera.com/content/cloudera/en/developers/home/developer-admin-resources/get-started-with-hadoop-tutorial.html
+	cd $JAVA_HOME/jre/lib/ext
+	wget http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.18/mysql-connector-java-5.1.18.jar
 
+## cm安装
 
-ref:
+- install
 
-## cdh安装
+	yum install -y cloudera-manager-daemons cloudera-manager-server
 
-	http://blog.csdn.net/hua840812/article/details/27704025
-	http://blog.csdn.net/kissmelove01/article/details/44680255
-	http://blog.csdn.net/hualiu163/article/details/46659375
-	http://blog.csdn.net/forest_boy/article/details/5636696
-	http://itindex.net/detail/51928-cloudera-manager-cdh5
+- init
 
-## spark hadoop 部分安装 
+	/usr/share/cmf/schema/scm_prepare_database.sh mysql -uroot -p --scm-host localhost scm scm scm
 
-	http://blog.javachen.com/2013/04/06/install-cloudera-cdh-by-yum
+- start
 
-uninstall cdh:http://www.cloudera.com/content/cloudera/en/documentation/cloudera-manager/v4-latest/Cloudera-Manager-Installation-Guide/cmig_uninstall_CM.html
+	service cloudera-scm-server start
+
+## install cdh
+
+	access http://host:7180

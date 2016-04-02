@@ -1,9 +1,9 @@
 # site-sitePVv3 site-adLoadv1 site-adPlayv1 site-adClickv1 site-adMasterv1 site-adMasterv2 site-wxConcatFollowv3 site-wxConcatFollowMACv3
 
 #define agent_site
-agent_site.sources  = src_site-sitePVv3 src_site-adLoadv1 src_site-adPlayv1 src_site-adClickv1 src_site-adMasterv1 src_site-adMasterv2 src_site-wxConcatFollowv3 src_site-wxConcatFollowMACv3 src_site-pageflowv1
-agent_site.channels = ch_site-sitePVv3 ch_site-adLoadv1 ch_site-adPlayv1 ch_site-adClickv1 ch_site-adMasterv1 ch_site-adMasterv2 ch_site-wxConcatFollowv3 ch_site-wxConcatFollowMACv3 ch_site-pageflowv1
-agent_site.sinks    = sink_site-sitePVv3 sink_site-adLoadv1 sink_site-adPlayv1 sink_site-adClickv1 sink_site-adMasterv1 sink_site-adMasterv2 sink_site-wxConcatFollowv3 sink_site-wxConcatFollowMACv3 sink_site-pageflowv1
+agent_site.sources  = src_site-sitePVv3 src_site-adLoadv1 src_site-adPlayv1 src_site-adClickv1 src_site-adMasterv1 src_site-adMasterv2 src_site-wxConcatFollowv3 src_site-wxConcatFollowMACv3 src_site-pageflowv1 src_site-pageflowv2
+agent_site.channels = ch_site-sitePVv3 ch_site-adLoadv1 ch_site-adPlayv1 ch_site-adClickv1 ch_site-adMasterv1 ch_site-adMasterv2 ch_site-wxConcatFollowv3 ch_site-wxConcatFollowMACv3 ch_site-pageflowv1 ch_site-pageflowv2
+agent_site.sinks    = sink_site-sitePVv3 sink_site-adLoadv1 sink_site-adPlayv1 sink_site-adClickv1 sink_site-adMasterv1 sink_site-adMasterv2 sink_site-wxConcatFollowv3 sink_site-wxConcatFollowMACv3 sink_site-pageflowv1 sink_site-pageflowv2
 
 #---------------site-sitePVv3---------------1
 #define source
@@ -343,3 +343,42 @@ agent_site.channels.ch_site-pageflowv1.dataDirs = /data/tmp/flume/data_site-page
 #define source and sink match channel
 agent_site.sources.src_site-pageflowv1.channels = ch_site-pageflowv1
 agent_site.sinks.sink_site-pageflowv1.channel = ch_site-pageflowv1
+
+
+#---------------site-site-pageflowv2---------------8
+#define source
+agent_site.sources.src_site-pageflowv2.type = org.apache.flume.source.kafka.KafkaSource
+agent_site.sources.src_site-pageflowv2.zookeeperConnect = zookeeper-01-sh:2181,zookeeper-02-sh:2181,zookeeper-03-sh:2181
+agent_site.sources.src_site-pageflowv2.topic = site-pageflowv2
+agent_site.sources.src_site-pageflowv2.batchSize = 1000
+agent_site.sources.src_site-pageflowv2.groupId = group_site-pageflowv2
+
+#define sink
+agent_site.sinks.sink_site-pageflowv2.type = org.apache.flume.sink.customhdfs.HDFSEventSink
+agent_site.sinks.sink_site-pageflowv2.hdfs.writeFormat = Text
+agent_site.sinks.sink_site-pageflowv2.hdfs.fileType = DataStream
+agent_site.sinks.sink_site-pageflowv2.hdfs.filePrefix =flume
+agent_site.sinks.sink_site-pageflowv2.hdfs.useLocalTimeStamp = true
+agent_site.sinks.sink_site-pageflowv2.hdfs.path = hdfs://master:8020/logs_origin/site/site-pageflowv2/%Y%m%d
+agent_site.sinks.sink_site-pageflowv2.hdfs.rollCount=0
+agent_site.sinks.sink_site-pageflowv2.hdfs.rollSize=512000000
+agent_site.sinks.sink_site-pageflowv2.hdfs.rollInterval=600
+agent_site.sinks.sink_site-pageflowv2.hdfs.batchSize=1000
+agent_site.sinks.sink_site-pageflowv2.hdfs.idleTimeout=10000
+agent_site.sinks.sink_site-pageflowv2.hdfs.callTimeout=10000
+
+agent_site.sinks.sink_site-pageflowv2.partitionFormat=yyyyMMdd
+agent_site.sinks.sink_site-pageflowv2.refCtimeColumn=createtime
+agent_site.sinks.sink_site-pageflowv2.refCtimeColumnEnable=false
+agent_site.sinks.sink_site-pageflowv2.tableName=parquetdb.site_pageflowv2,txtdb.site_pageflowv2
+agent_site.sinks.sink_site-pageflowv2.impalaUrl=jdbc:hive2://slave1:21050/;auth=noSasl
+
+#define channel
+agent_site.channels.ch_site-pageflowv2.type = file
+agent_site.channels.ch_site-pageflowv2.checkpointDir = /data/tmp/flume/checkpoint_site-pageflowv2
+agent_site.channels.ch_site-pageflowv2.dataDirs = /data/tmp/flume/data_site-pageflowv2
+
+
+#define source and sink match channel
+agent_site.sources.src_site-pageflowv2.channels = ch_site-pageflowv2
+agent_site.sinks.sink_site-pageflowv2.channel = ch_site-pageflowv2

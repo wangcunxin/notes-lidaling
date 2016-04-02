@@ -8,7 +8,7 @@
 
 	git branch '$branch name'
     git checkout '$branch name'
-    git checkou -b '$branch name'
+    git checkout -b '$branch name'
     git remote update
 
 - untrack files

@@ -19,6 +19,7 @@
 
   http://shiro.apache.org/
 
+<<<<<<< HEAD
 ### BIO NIO AIO
 
 - AIO
@@ -64,3 +65,25 @@ NIO可以理解为单线程中执行多通道数据readline。其付出的代价
   > 可见性
 
   > 有序性
+=======
+### like dubbo framework
+
+- coral  by amazon
+- hsf taobao
+- ... netflix
+
+### dropwizard to deb or rpm
+
+https://groups.google.com/forum/#!topic/dropwizard-user/uFCgyipl7GQ
+
+after rpm or deb installation , app can be registered as linux daemon
+
+### workflow
+
+- Activiti
+- jbpm
+
+### like zookeeper
+
+  CONSUL
+>>>>>>> 66d4da859c71d517987a60a8aee318c033c03f7d
