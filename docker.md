@@ -156,3 +156,6 @@ EXPOSE 22
 
   EXPOSE 22
 
+## modify docker container tags
+
+	docker tag registry.aliyuncs.com/acs-sample/centos:2 test
