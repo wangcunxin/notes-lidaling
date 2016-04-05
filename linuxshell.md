@@ -80,6 +80,12 @@ execute commands as a different user
 	# in order limit depth
 	du --max-depth=1 -ch|sort -hr
 
+### delete nosign disk spacealocate
+
+	lsof |grep delete
+
+fine the process id ,then kill it 
+
 ### termianl power tools
 
 - oh my zsh
