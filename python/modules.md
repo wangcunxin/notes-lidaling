@@ -11,6 +11,23 @@
   pip install module -i http://pypi.douban.com/sample
 
   ```
-  清化大学：http://e.pypi.python.org/simple
-  教育网：http://pypi.tuna.tsinghua.edu.cn/simple
+  	清化大学：http://e.pypi.python.org/simple
+  	教育网：http://pypi.tuna.tsinghua.edu.cn/simple
+	aliyun: http://mirrors.aliyun.com/pypi/simple
   ```
+
+- set pip mirrors
+
+	vim ~/.pip/pip.conf
+
+add 
+
+	[global]
+	index-url = http://mirrors.aliyun.com/pypi/simple
+
+
+### python email 
+
+- body and attachement
+	
+	http://stackoverflow.com/questions/23397654/python-smtplib-sendmail-mime-multipart-body-doesnt-shown-on-iphone

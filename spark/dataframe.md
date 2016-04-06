@@ -63,3 +63,10 @@ https://spark.apache.org/docs/1.4.1/api/python/pyspark.sql.html?highlight=datafr
 
   d = [{'name': 'Alice', 'age': 1}]
   sqlContext.createDataFrame(d).collect()
+
+# udf with dataframe
+
+	def cities_name(x):
+		return x	
+	_udf_cities_name= udf(cities_name, StringType())	
+	_df.withColumn('fromcities',_udf_cities_name('fromcities'))

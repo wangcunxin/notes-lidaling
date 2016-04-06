@@ -2,7 +2,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " config leader key
-let mapleader = ","
+"let mapleader = ","
 
 " neocomplcache let config 
 let g:neocomplcache_enable_at_startup = 1
@@ -15,6 +15,11 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 "Crtl+wj takes you down a window
 "Crtl+wk takes you up a window
 "Crtl+wl takes you right a window
+"Ctrl+W, S (upper case) for horizontal splitting
+"Ctrl+W, v (lower case) for vertical splitting
+"Ctrl+W, Q to close one
+"Ctrl+W, Ctrl+W to switch between windows
+"Ctrl+W, J (xor K, H, L) to switch to adjacent window (intuitively up, down,left, right)
 
 " easymotion config
 " ref http://www.wklken.me/posts/2015/06/07/vim-plugin-easymotion.html
