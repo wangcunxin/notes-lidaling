@@ -24,3 +24,8 @@ add
 - using in command line like
 
   ALL_PROXY=socks5://127.0.0.1:1080 brew install nodejs
+
+- if download file error ,another way is to download file to the brew cache folder
+
+	wget https://downloads.sf.net/project/machomebrew/Bottles/mysql-5.5.28.mountainlion.bottle.tar.gz /Library/Caches/Homebrew/
+	brew install mysql

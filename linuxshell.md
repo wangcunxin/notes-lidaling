@@ -124,3 +124,29 @@ fine the process id ,then kill it
 watch files dir specify
 
 	watch -n 1 'ls -al'
+
+## common formula
+
+```
+wget
+tree
+tmux
+polipo
+meld
+ssh-copy-id
+hub
+watch
+figlet
+htop-osx
+xaric
+```
+## dstat
+
+- install 
+	
+	sudo apt-get install dstst
+
+- commands
+
+	dstat -cdngymp
+	dstat --top-mem --top-cpu --top-io

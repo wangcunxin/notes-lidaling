@@ -91,7 +91,7 @@ Disk identifier: 0x016f0ed9
 
 ## mount
 
-  mke2fs -t ext4 /dev/xvdb1
+  mount /dev/xvdb1	/data
 
 got error msg:
 

@@ -1,3 +1,4 @@
+ ref :http://docs.python-guide.org/en/latest/dev/pip-virtualenv/
 
 ## install pip
 
@@ -22,3 +23,8 @@
 - install modules with python virtual environment
 
   pip install docker-compose
+
+## custom python repositories in PyCharm
+
+- manager repositories
+- add `http://mirrors.aliyun.com/pypi/simple/`

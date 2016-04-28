@@ -51,14 +51,14 @@ create database navms DEFAULT CHARACTER SET utf8;
 create database ooziedata DEFAULT CHARACTER SET utf8;
 create database monitordata DEFAULT CHARACTER SET utf8;
 
-grant all on amon.* TO 'root'@'master' IDENTIFIED BY 'root123';
-grant all on rman.* TO 'root'@'master' IDENTIFIED BY 'root123';
-grant all on metastore.* TO 'root'@'master' IDENTIFIED BY 'root123';
-grant all on sentry.* TO 'root'@'master' IDENTIFIED BY 'root123';
-grant all on nav.* TO 'root'@'master' IDENTIFIED BY 'root123';
-grant all on navms.* TO 'root'@'master' IDENTIFIED BY 'root123';
-grant all on ooziedata.* TO 'root'@'master' IDENTIFIED BY 'root123';
-grant all on monitordata.* TO 'root'@'master' IDENTIFIED BY 'root123';
+grant all on amon.* TO 'root'@'master' IDENTIFIED BY 'root20160324';
+grant all on rman.* TO 'root'@'master' IDENTIFIED BY 'root20160324';
+grant all on metastore.* TO 'root'@'master' IDENTIFIED BY 'root20160324';
+grant all on sentry.* TO 'root'@'master' IDENTIFIED BY 'root20160324';
+grant all on nav.* TO 'root'@'master' IDENTIFIED BY 'root20160324';
+grant all on navms.* TO 'root'@'master' IDENTIFIED BY 'root20160324';
+grant all on ooziedata.* TO 'root'@'master' IDENTIFIED BY 'root20160324';
+grant all on monitordata.* TO 'root'@'master' IDENTIFIED BY 'root20160324';
 ```
 ## ntpd
 

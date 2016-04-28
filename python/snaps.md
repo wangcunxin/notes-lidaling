@@ -25,3 +25,8 @@ if __name__ == '__main__':
     sched.shutdown(wait=True)
 
 ```
+
+
+datetime:
+
+        if (x.ArrivalTime-x.DepartureTime).total_seconds() > 3600*24 :

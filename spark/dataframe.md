@@ -70,3 +70,9 @@ https://spark.apache.org/docs/1.4.1/api/python/pyspark.sql.html?highlight=datafr
 		return x	
 	_udf_cities_name= udf(cities_name, StringType())	
 	_df.withColumn('fromcities',_udf_cities_name('fromcities'))
+
+# rdd write to csv file
+
+```
+just map the lines of the RDD (labelsAndPredictions) into strings (the lines of the CSV) then use rdd.saveAsTextFile()
+```
