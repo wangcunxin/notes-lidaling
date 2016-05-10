@@ -42,4 +42,9 @@ COMMIT
 
   service iptables restart
 
+- filter
 
+> allow ip with port
+
+	-A INPUT -i eth1 -p tcp -m tcp -s 101.81.242.72 --dport 18080 -j ACCEPT
+	-A INPUT -i eth1 -p tcp -m tcp -s 0.0.0.0/0 --dport 18080 -j DROP
