@@ -162,3 +162,18 @@ case $1 in
 esac    
 exit 0
 ```
+## disable tomcat cache
+
+first ,u should delete $CATALINA_HOME/work/*
+
+then add config follow to $CATALINA_HOME/conf/server.xml
+
+```
+<Context className="org.apache.catalina.core.StandardContext"
+                 cachingAllowed="false"
+                 charsetMapperClass="org.apache.catalina.util.CharsetMapper"
+                 cookies="true"
+                 reloadable="false"
+                 wrapperClass="org.apache.catalina.core.StandardWrapper">
+        </Context>
+```

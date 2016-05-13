@@ -67,3 +67,12 @@ Database /path/to/csvfile/TableName.csv
 ## query table name using like
 
 	select table_name from information_schema.tables where table_name like 'log_user%';
+
+## mysqldump without data
+
+	mysqldump -uroot -p -d databasename > createtab.sql
+	mysql -uroot -pTtyhuo2016$ app_ttyhuo< /tmp/dd.sql
+
+## mysql back from sqlfile
+
+	mysql -uroot -pTtyhuo2016$ app_ttyhuo< /tmp/dd.sql
