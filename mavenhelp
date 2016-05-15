@@ -11,3 +11,7 @@
 this command can analyze dependecies ,that unused or not clear dependency
 
   mvn dependency:analyze
+
+- with proxy
+
+	 -DsocksProxyHost=127.0.0.1 -DsocksProxyPort=7070

@@ -13,6 +13,8 @@ kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --par
 
 ### delete topic
 
+- kafka config
+
 set topic property on brokers server-env.sh
 
     delete.topic.enable=true
@@ -20,6 +22,13 @@ set topic property on brokers server-env.sh
 then issue command :
 
     kafka-topics.sh --delete --zookeeper localhost:2181 --topic test
+
+- zookeeper exec
+
+  #:zookeeper-client or zkcli
+  #:rmr /brokers/topics/{topic_name}
+  #:rmr /admin/delete_topics/{topic_name}
+  #quit
 
 ### zkCli.sh location in CDH
 

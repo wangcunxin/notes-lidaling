@@ -23,3 +23,28 @@ COMMIT
 # Completed on Thu Feb  5 14:06:16 2015
 
 ```
+
+- dnat
+
+> add rules
+
+	iptables -t nat -A PREROUTING -p tcp -m tcp --dport 10010 -j DNAT --to-destination 10.24.33.235:8888
+
+> del rules
+
+	iptables -t nat -A PREROUTING -p tcp -m tcp --dport 10010 -j DNAT --to-destination 10.24.33.235:8888
+
+> save to system avoiding rules crash after system reboot
+
+  /etc/rc.d/init.d/iptables save
+
+> restart iptables service
+
+  service iptables restart
+
+- filter
+
+> allow ip with port
+
+	-A INPUT -i eth1 -p tcp -m tcp -s 101.81.242.72 --dport 18080 -j ACCEPT
+	-A INPUT -i eth1 -p tcp -m tcp -s 0.0.0.0/0 --dport 18080 -j DROP

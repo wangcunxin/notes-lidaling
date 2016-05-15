@@ -4,6 +4,17 @@
 
 	http://archive.cloudera.com/cdh5/parcels/latest/  parcel包下载
 	http://archive-primary.cloudera.com/cm5/redhat/6/x86_64/cm/5/RPMS/x86_64/ cm rpm包下载 
+## parcel包预准备 
+	
+	mkdir -p /opt/cloudera/parcel-repo
+	chown -R cloudera-scm:cloudera-scm /opt/cloudera/parcel-repo
+
+将下载的.parcel文件 放在/opt/cloudera/parcel-repo下
+并写入一个相同文件名的.sha文件 ,如：
+
+	-rwxrwxrwx 1 cloudera-scm cloudera-scm 1457371397 Mar 25 21:09 CDH-5.6.0-1.cdh5.6.0.p0.45-el6.parcel
+	-rwxrwxrwx 1 cloudera-scm cloudera-scm         41 Feb 24 08:24 CDH-5.6.0-1.cdh5.6.0.p0.45-el6.parcel.sha
+
 
 ## 本地仓库创建 
 

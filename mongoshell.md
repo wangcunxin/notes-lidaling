@@ -4,7 +4,7 @@
 
 ```shell
 use admin
-db.createUser({user:"root",pwd:"root123", roles:[{role:"root",db:"admin"}]})
+db.createUser({user:"root",pwd:"root20160324", roles:[{role:"root",db:"admin"}]})
 db.createUser(
   {
     user: "admin",

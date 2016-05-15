@@ -142,3 +142,15 @@ function doIt2(key) {
 ```
 
 首先var fiber = Fiber.current;用于获取当前的执行域，然后挂起回调，接着是：Fiber.yield();，这句话的作用可以理解为阻塞当前的执行域，并释放cpu，这样就为刚刚挂起的回调提供了cpu了，当回调执行完后fiber.run();用于使yield返回
+
+
+### npm proxy
+
+ref:http://www.cnblogs.com/huang0925/archive/2013/05/17/3083207.html
+
+  npm install $package --verbose --proxy http://server:port
+  npm install $package --verbose --https-proxy https://server:port
+
+  npm install $package --verbose --registry http://registry.npmjs.org/
+  or
+  npm config set registry "http://registry.npmjs.org/"
