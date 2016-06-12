@@ -1,3 +1,25 @@
+### config
+
+  vim bin/livy-server
+
+  add
+```
+  export JAVA_HOME=...
+  export SPARK_HOME=...
+```
+
+  vim con/livy-default.conf
+
+  edit
+
+  ```
+   livy.server.session.factory = yarn
+  ```
+
+### start
+
+  ./bin/livy-server
+
 ### sessions
 
 session means using same context

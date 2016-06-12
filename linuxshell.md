@@ -45,6 +45,47 @@ one human http tool like curl
 
 	http --verbose post http://112.65.205.80:12048/router/52a2a103d3744fb5e3ac9e857ce6e671/auth/whitelist?partner=2014071717480672279 macs:='[""]'
 
+```
+模拟提交表单
+http -f POST yhz.me username=nate
+
+显示详细的请求
+http -v yhz.me
+
+只显示Header
+http -h yhz.me
+
+只显示Body
+http -b yhz.me
+
+下载文件
+http -d yhz.me
+
+请求删除的方法
+http DELETE yhz.me
+
+传递JSON数据请求(默认就是JSON数据请求)
+http PUT yhz.me name=nate password=nate_password
+如果JSON数据存在不是字符串则用:=分隔，例如
+http PUT yhz.me name=nate password=nate_password age:=28 a:=true streets:='["a", "b"]'
+
+模拟Form的Post请求, Content-Type: application/x-www-form-urlencoded; charset=utf-8
+http --form POST yhz.me name='nate'
+模拟Form的上传, Content-Type: multipart/form-data
+http -f POST example.com/jobs name='John Smith' file@~/test.pdf
+
+修改请求头, 使用:分隔
+http yhz.me  User-Agent:Yhz/1.0  'Cookie:a=b;b=c'  Referer:http://yhz.me/
+
+认证
+http -a username:password yhz.me
+http --auth-type=digest -a username:password yhz.me
+
+使用http代理
+http --proxy=http:http://192.168.1.100:8060 yhz.me
+http --proxy=http:http://user:pass@192.168.1.100:8060 yhz.me
+```
+
 set headers
 
 	http --verbose --ignore-stdin --json post http://192.168.0.95:30000/data datatype=hosWiFiLogWechatFlow time=2015-09-12 23:44:45 data:='["eyJnd0lkIjoiQiIsImhvc0lkIjoiYmJsaW5rLWhvc2lkIiwic3VwcElkIjoiMCIsInVzZXJNYWMiOiIwMDpGRjpDQzpBQTpFRSIsInR5cGUiOiIxLXRlc3QiLCJsb2dUaW1lIjoxNDQ4NTAwNjgyMDAwLCJhdXRoVHlwZSI6IiJ9"]' from=portal Content-Type:application/vnd.bblink.remote-access.v1+json
@@ -84,7 +125,7 @@ execute commands as a different user
 
 	lsof |grep delete
 
-fine the process id ,then kill it 
+fine the process id ,then kill it
 
 ### termianl power tools
 
@@ -142,8 +183,8 @@ xaric
 ```
 ## dstat
 
-- install 
-	
+- install
+
 	sudo apt-get install dstst
 
 - commands

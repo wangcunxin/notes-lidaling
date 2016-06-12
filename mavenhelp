@@ -4,7 +4,7 @@
 
 - mvn local install
 
-  mvn install:install-file -Dfile=./zookeeper-spring-1.0.0-SNAPSHOT.jar -DgroupId=com.ryantenney.zookeeper -DartifactId=zookeeper-spring -Dversion=1.0.0-SNAPSHOT -Dpackage=jar
+  mvn install:install-file -Dfile=./zookeeper-spring-1.0.0-SNAPSHOT.jar -DgroupId=com.ryantenney.zookeeper -DartifactId=zookeeper-spring -Dversion=1.0.0-SNAPSHOT -Dpackaging=jar
 
 - analyze dependencies
 

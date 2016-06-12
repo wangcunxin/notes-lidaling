@@ -1,3 +1,11 @@
+### static ip for centos
+
+  vim /etc/sysconfig/network-scripts/ifcfg-eth0
+
+notes;
+
+- make sure mac adrr same with default ifconfig showing
+
 ```
 DEVICE="eth0"
 ONBOOT=yes
