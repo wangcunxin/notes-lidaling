@@ -39,6 +39,10 @@ delete user:
 
 	sudo userdel -r impala
 
+### ssh-copy-id
+
+	ssh-copy-id -i .ssh/filename.pub user@server
+
 ### check hdfs dir size
 
 	hdfs dfs -du [-s] [-h] URI [URI …]

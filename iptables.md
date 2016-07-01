@@ -32,7 +32,7 @@ COMMIT
 
 > del rules
 
-	iptables -t nat -A PREROUTING -p tcp -m tcp --dport 10010 -j DNAT --to-destination 10.24.33.235:8888
+	iptables -t nat -D PREROUTING -p tcp -m tcp --dport 10010 -j DNAT --to-destination 10.24.33.235:8888
 
 > save to system avoiding rules crash after system reboot
 

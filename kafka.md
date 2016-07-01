@@ -52,3 +52,23 @@ then issue command :
 ### note
 
 kafka partition 数量和 consumer 数量 是多对一或 一对一 ，如果 partition数量 少于 consumer数量 ，则其中多余的consumer将无数据可消费
+
+
+### start
+
+  ./bin/kafka-server-start.sh ./config/server.properties &
+
+### stop
+
+  ./bin/kafka-server-stop.sh
+
+zookeeper
+---
+
+### start
+
+  ./zkServer.sh start
+
+### stop
+
+  ./zkServer.sh stop

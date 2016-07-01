@@ -39,3 +39,13 @@ add `main contrib non-freemain contrib non-free` after each line
 - gvim
 
 	sudo apt-get install vim-gnome
+
+### simple chinese to english
+
+	sudo dpkg-reconfigure locales
+
+then select en_US.UTF-8,and step in
+
+### set default editor on linux
+
+  sudo update-alternatives --config editor
