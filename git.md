@@ -14,3 +14,7 @@
 - untrack files
 
 		git rm --cached .DS_Store
+
+## change git server ip
+
+  git remote set-url origin git@192.168.0.26:ttyh/tools_py.git
