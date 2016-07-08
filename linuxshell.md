@@ -192,6 +192,12 @@ xaric
 	dstat -cdngymp
 	dstat --top-mem --top-cpu --top-io
 
-## gbk 转 utf-8
+## gbk utf-8 互转
+
+- utf-8 to gbk
 
 	iconv -f utf-8 -t gbk aaa.csv >  bbb.csv
+
+- gbk to utf-8
+
+	iconv -f gbk -t utf-8 aaa.csv >  bbb.csv
