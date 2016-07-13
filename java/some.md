@@ -3,6 +3,9 @@
   [volatile](http://www.infoq.com/cn/articles/ftf-java-volatile)
   [Disruptor](http://ifeve.com/disruptor/)
 
+  http://tutorials.jenkov.com/java-util-concurrent/lock.html
+  http://howtodoinjava.com/core-java/multi-threading/how-to-use-locks-in-java-java-util-concurrent-locks-lock-tutorial-and-example/
+
 ### mysql
 
   [canal](http://agapple.iteye.com/blog/1796633)
