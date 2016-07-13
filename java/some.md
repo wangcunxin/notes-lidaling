@@ -87,3 +87,37 @@ after rpm or deb installation , app can be registered as linux daemon
 
   CONSUL
 >>>>>>> 66d4da859c71d517987a60a8aee318c033c03f7d
+
+
+### snips
+
+```
+CloseableHttpClient client = HttpClients.createDefault();
+       HttpPost httpPost = new HttpPost("http://www.591duanxin.com/sms.aspx");
+
+       /**
+       List<NameValuePair> params = new ArrayList<NameValuePair>();
+       params.add(new BasicNameValuePair("userid", "642"));
+       params.add(new BasicNameValuePair("account", "dianwei106"));
+       params.add(new BasicNameValuePair("password", "zhudf1311"));
+       params.add(new BasicNameValuePair("mobile", "13311395851"));
+       params.add(new BasicNameValuePair("content","【天天有货】test"));
+       params.add(new BasicNameValuePair("sendTime", ""));
+       params.add(new BasicNameValuePair("action", "send"));
+       params.add(new BasicNameValuePair("extno", ""));
+        */
+
+       String str="action=send&userid=642&account=dianwei106&password=zhudf1311&mobile=13311395851&content=【天天有货】test&sendTime=&extno=";
+       ByteArrayOutputStream out = new ByteArrayOutputStream();
+       Writer writer = new OutputStreamWriter(out, "UTF-8");
+       writer.write(str);
+       writer.flush();
+       httpPost.setEntity(new ByteArrayEntity(out.toByteArray()));
+       httpPost.setHeader("Content-type", "application/xml; charset=utf-8");
+       httpPost.setHeader("accept", "*/*");
+
+       CloseableHttpResponse response = client.execute(httpPost);
+       client.close();
+
+       System.out.println("RESPONSE: " + response.toString());
+```
