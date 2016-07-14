@@ -5,6 +5,7 @@
 
   http://tutorials.jenkov.com/java-util-concurrent/lock.html
   http://howtodoinjava.com/core-java/multi-threading/how-to-use-locks-in-java-java-util-concurrent-locks-lock-tutorial-and-example/
+  http://www.baeldung.com/httpclient-post-http-request
 
 ### mysql
 

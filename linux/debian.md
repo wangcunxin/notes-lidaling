@@ -49,3 +49,10 @@ then select en_US.UTF-8,and step in
 ### set default editor on linux
 
   sudo update-alternatives --config editor
+
+### install flash plugin on debian
+
+  download flash_player_ppapi_linux.x86_64.tar.gz from adobe officalsite
+  
+  cp ~/tmp/flash_player_ppapi_linux.x86_64/libpepflashplayer.so /usr/lib/chromium/plugins/
+  cp ~/tmp/flash_player_ppapi_linux.x86_64/libpepflashplayer.so ~/.mozilla/plugins
