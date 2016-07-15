@@ -190,6 +190,7 @@ then add config follow to $CATALINA_HOME/conf/server.xml
 ### tomcat 优化
 
   http://itindex.net/detail/51643-tomcat-%E4%BC%98%E5%8C%96-%E4%BC%98%E5%8C%96
+  http://itindex.net/detail/50364-tomcat-%E4%BC%98%E5%8C%96
 
 ### ps aux
 
@@ -202,3 +203,4 @@ root         1  0.0  0.0  19232  1076 ?        Ss   Jul08   0:01 /sbin/init
 ### java 监控
 
   http://blog.csdn.net/tianya846/article/details/38538411
+  http://developer.51cto.com/art/201203/321431.htm
