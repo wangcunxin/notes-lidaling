@@ -177,3 +177,28 @@ then add config follow to $CATALINA_HOME/conf/server.xml
                  wrapperClass="org.apache.catalina.core.StandardWrapper">
         </Context>
 ```
+
+
+### set JAVA_OPTS
+
+  JAVA_OPTS="-server -Xms1024m -Xmx1024m -XX:NewSize=256m -XX:MaxNewSize=512m -XX:PermSize=128M -XX:MaxPermSize=256m"
+
+### check heap using
+
+  jmap -heap $PID
+
+### tomcat 优化
+
+  http://itindex.net/detail/51643-tomcat-%E4%BC%98%E5%8C%96-%E4%BC%98%E5%8C%96
+
+### ps aux
+
+VSZ 虚拟内存大小 ，即整个进程实际装入内存大小
+RSS 实际使用内存大小
+
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.0  19232  1076 ?        Ss   Jul08   0:01 /sbin/init
+
+### java 监控
+
+  http://blog.csdn.net/tianya846/article/details/38538411
