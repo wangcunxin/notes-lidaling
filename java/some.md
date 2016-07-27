@@ -8,6 +8,7 @@
   http://www.baeldung.com/httpclient-post-http-request
   http://www.massapi.com/
   https://examples.javacodegeeks.com/
+  http://www.baeldung.com/spring-profiles
 
 ### mysql
 
